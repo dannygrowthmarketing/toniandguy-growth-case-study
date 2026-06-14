@@ -1,0 +1,1854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TONI&amp;GUY · The Atelier Monograph — Sixteen Stores, One Cut</title>
+<meta name="description" content="A craft monograph of the TONI&amp;GUY India growth engagement — 16 stores, 26.9M impressions, 173K conversions, ₹369M revenue. By Daniel Deepak.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400;1,6..96,500&family=Caveat:wght@400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bistre:#0A0908;
+  --clove:#1A1714;
+  --clove2:#231F1A;
+  --brass:#C9A35B;
+  --brass-d:#8A6D2A;
+  --brass-l:#E8C77A;
+  --bone:#EFE7D2;
+  --ash:#7A7570;
+  --henna:#A65D57;
+  --line:rgba(239,231,210,0.08);
+  --line2:rgba(201,163,91,0.18);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bistre);
+  color:var(--bone);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* === TYPOGRAPHY === */
+.display{font-family:'Bodoni Moda',Georgia,serif;font-weight:500;letter-spacing:-0.005em;}
+.display-i{font-family:'Bodoni Moda',Georgia,serif;font-style:italic;font-weight:400;}
+.mono{font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;font-weight:300;}
+.hand{font-family:'Caveat',cursive;font-weight:400;}
+
+/* === SCROLL PROGRESS === */
+#scrollBar{
+  position:fixed;top:0;left:0;height:1px;width:0%;
+  background:var(--brass);
+  z-index:300;transition:width 0.08s linear;
+}
+
+/* === TOP RULE === */
+#topNav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  padding:1.4rem clamp(1.5rem,5vw,4rem);
+  display:flex;justify-content:space-between;align-items:center;
+  background:transparent;
+  transition:background 0.4s ease, border-color 0.4s ease;
+  border-bottom:1px solid transparent;
+}
+#topNav.scrolled{
+  background:rgba(10,9,8,0.92);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom-color:var(--line);
+}
+.nav-brand{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1rem;letter-spacing:0.18em;text-transform:uppercase;
+}
+.nav-brand em{color:var(--brass);font-style:italic;font-weight:400;letter-spacing:0;}
+.nav-folios{display:flex;gap:2.2rem;align-items:center;}
+.nav-folios a{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--bone);opacity:0.42;text-decoration:none;
+  transition:opacity 0.25s ease, color 0.25s ease;
+}
+.nav-folios a:hover{opacity:1;color:var(--brass-l);}
+.nav-folios .roman{color:var(--brass);opacity:0.8;margin-right:0.45rem;font-style:italic;font-family:'Bodoni Moda',serif;letter-spacing:0;}
+@media (max-width:880px){.nav-folios{display:none;}}
+
+/* === SIGNATURE: GEOMETRIC CUT DIAGRAM === */
+#hero{
+  position:relative;
+  min-height:100vh;
+  padding:6rem clamp(1.5rem,5vw,4rem) 3rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+.hero-grid{
+  flex:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,4vw,4rem);
+  align-items:center;
+  position:relative;
+  z-index:2;
+}
+@media (max-width:980px){.hero-grid{grid-template-columns:1fr;gap:3rem;}}
+
+.hero-left{display:flex;flex-direction:column;gap:2rem;}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:1rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.28em;color:var(--brass);text-transform:uppercase;
+}
+.hero-eyebrow::before{content:'';width:30px;height:1px;background:var(--brass);}
+.hero-h1{
+  font-family:'Bodoni Moda',Georgia,serif;
+  font-weight:500;
+  font-size:clamp(2.6rem,6.5vw,5.6rem);
+  line-height:0.98;
+  letter-spacing:-0.012em;
+}
+.hero-h1 em{
+  font-style:italic;font-weight:400;
+  color:var(--brass);
+}
+.hero-tag{
+  font-size:1rem;line-height:1.75;
+  opacity:0.6;font-weight:300;
+  max-width:560px;
+}
+.hero-tag strong{color:var(--bone);font-weight:400;opacity:1;}
+
+.hero-credit{
+  display:flex;gap:2.5rem;margin-top:0.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.65rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  opacity:0.45;
+}
+.hero-credit .crl{color:var(--brass);opacity:0.7;display:block;font-size:0.55rem;margin-bottom:0.3rem;}
+.hero-credit .crv{color:var(--bone);opacity:1;font-weight:400;}
+
+.hero-right{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  min-height:480px;
+}
+#cutDiagram{
+  width:100%;max-width:560px;
+  height:auto;
+  display:block;
+}
+.cd-readout{
+  position:absolute;
+  font-family:'JetBrains Mono',monospace;
+  font-size:0.58rem;letter-spacing:0.2em;
+  color:var(--brass);opacity:0.55;
+  text-transform:uppercase;
+}
+.cd-readout.r1{top:8%;right:4%;}
+.cd-readout.r2{bottom:14%;left:4%;}
+.cd-readout strong{color:var(--bone);font-weight:400;opacity:1;display:block;margin-top:0.25rem;font-size:0.8rem;letter-spacing:0.1em;}
+
+.hero-foot{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  flex-wrap:wrap;gap:1.5rem;
+  padding-top:2rem;
+  border-top:1px solid var(--line);
+  margin-top:2rem;
+  position:relative;z-index:2;
+}
+.hero-kpis{display:flex;gap:clamp(1.5rem,4vw,3.5rem);flex-wrap:wrap;}
+.hkpi .v{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(1.4rem,2.6vw,2rem);
+  color:var(--brass);font-weight:500;line-height:1;
+}
+.hkpi.neg .v{color:#8FA67D;}
+.hkpi .l{
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  opacity:0.45;margin-top:0.5rem;
+}
+.scroll-cue{
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.24em;text-transform:uppercase;
+  opacity:0.4;display:flex;align-items:center;gap:0.7rem;
+}
+.scroll-cue .bar{width:1px;height:34px;background:var(--brass);animation:cuep 2.4s ease-in-out infinite;}
+@keyframes cuep{0%,100%{opacity:0.15;transform:scaleY(0.3);transform-origin:top;}55%{opacity:0.85;transform:scaleY(1);}}
+
+/* === CUT LINE DIVIDER === */
+.cutline{
+  position:relative;
+  padding:2.5rem 0;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.cutline svg{
+  width:100%;max-width:1500px;
+  display:block;
+}
+.cutline .cl-path{
+  stroke-dasharray:6 6;
+  stroke-dashoffset:1000;
+  stroke:var(--brass);
+  stroke-width:0.8;
+  fill:none;
+  opacity:0.55;
+  transition:stroke-dashoffset 1.8s ease-out;
+}
+.cutline.in .cl-path{stroke-dashoffset:0;}
+.cutline .cl-scissor{
+  fill:var(--brass);
+  opacity:0;
+  transition:opacity 0.6s ease-out 0.8s;
+}
+.cutline.in .cl-scissor{opacity:0.85;}
+.cutline .cl-label{
+  position:absolute;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+  background:var(--bistre);padding:0 1.2rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--brass);opacity:0.65;
+}
+
+/* === FOLIO SECTIONS === */
+.folio{
+  padding:clamp(4rem,9vh,7rem) clamp(1.5rem,5vw,4rem);
+  max-width:1500px;
+  margin:0 auto;
+  position:relative;
+}
+.folio-head{
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:end;
+  padding-bottom:2.5rem;
+  border-bottom:1px solid var(--line);
+  margin-bottom:3.5rem;
+}
+@media (max-width:780px){
+  .folio-head{grid-template-columns:1fr;gap:1.4rem;align-items:start;}
+}
+.folio-numeral{
+  font-family:'Bodoni Moda',serif;
+  font-style:italic;font-weight:400;
+  font-size:clamp(3rem,6vw,4.5rem);
+  color:var(--brass);
+  line-height:0.9;
+  letter-spacing:-0.02em;
+}
+.folio-title-block .chapter{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--brass);opacity:0.75;
+  margin-bottom:0.9rem;
+}
+.folio-title{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:clamp(1.9rem,3.8vw,3rem);
+  line-height:1.08;
+  letter-spacing:-0.008em;
+  max-width:780px;
+}
+.folio-title em{color:var(--brass);font-style:italic;font-weight:400;}
+.folio-tag{
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  opacity:0.4;
+  white-space:nowrap;
+  padding-bottom:0.4rem;
+}
+
+/* === BODY TYPE === */
+.lede{
+  font-family:'Bodoni Moda',serif;font-style:italic;font-weight:400;
+  font-size:clamp(1.1rem,1.6vw,1.35rem);
+  line-height:1.55;
+  color:var(--bone);opacity:0.85;
+  max-width:780px;
+  margin-bottom:2.5rem;
+}
+.body-prose{
+  font-size:0.95rem;line-height:1.78;
+  opacity:0.62;font-weight:300;
+  max-width:680px;
+}
+.body-prose strong{color:var(--bone);font-weight:400;opacity:1;}
+
+/* === FOLIO I: CONSULTATION CARD === */
+.consultation{
+  display:grid;
+  grid-template-columns:1.05fr 1fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:start;
+}
+@media (max-width:980px){.consultation{grid-template-columns:1fr;}}
+
+.consult-card{
+  border:1px solid var(--line2);
+  padding:2.4rem;
+  background:linear-gradient(180deg,var(--clove) 0%,rgba(26,23,20,0.4) 100%);
+  position:relative;
+}
+.consult-card::before{
+  content:'';position:absolute;top:0;left:0;width:36%;height:3px;background:var(--brass);
+}
+.consult-stamp{
+  position:absolute;top:1.5rem;right:1.5rem;
+  border:1px solid var(--henna);
+  color:var(--henna);
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  padding:0.35rem 0.7rem;
+  transform:rotate(-3deg);
+  opacity:0.78;
+}
+.consult-h{
+  font-family:'JetBrains Mono',monospace;font-size:0.58rem;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--brass);opacity:0.8;
+  margin-bottom:1.8rem;
+}
+.consult-row{
+  display:grid;grid-template-columns:130px 1fr;
+  gap:1.4rem;padding:1rem 0;
+  border-bottom:1px dashed var(--line2);
+  align-items:baseline;
+}
+.consult-row:last-child{border-bottom:none;}
+.consult-row .ck{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  opacity:0.5;
+}
+.consult-row .cv{
+  font-family:'Bodoni Moda',serif;font-weight:400;
+  font-size:1.05rem;line-height:1.4;
+}
+.consult-row .cv em{color:var(--brass);font-style:italic;}
+
+.findings{display:flex;flex-direction:column;gap:1.6rem;}
+.finding{
+  padding:1.4rem 0;
+  border-bottom:1px solid var(--line);
+  position:relative;
+  padding-left:2.6rem;
+}
+.finding:last-child{border-bottom:none;}
+.finding-num{
+  position:absolute;left:0;top:1.4rem;
+  font-family:'Bodoni Moda',serif;font-style:italic;
+  font-size:1.4rem;color:var(--brass);font-weight:400;
+  line-height:1;
+}
+.finding-title{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.2rem;letter-spacing:-0.005em;
+  margin-bottom:0.5rem;
+}
+.finding-body{
+  font-size:0.88rem;line-height:1.65;
+  opacity:0.6;font-weight:300;
+}
+.finding-margin{
+  font-family:'Caveat',cursive;
+  font-size:1.05rem;
+  color:var(--henna);opacity:0.85;
+  display:block;margin-top:0.7rem;
+  position:relative;padding-left:1.4rem;
+}
+.finding-margin::before{
+  content:'→';position:absolute;left:0;top:0;
+  color:var(--henna);font-family:inherit;
+}
+
+/* === FOLIO II: COLOR FORMULA === */
+.formula-wrap{
+  display:grid;grid-template-columns:1.2fr 1fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:start;
+}
+@media (max-width:980px){.formula-wrap{grid-template-columns:1fr;}}
+
+.formula-card{
+  border:1px solid var(--line2);
+  padding:2.4rem;
+  background:var(--clove);
+  position:relative;
+}
+.formula-card::before{
+  content:'';position:absolute;top:-1px;left:-1px;
+  width:60px;height:60px;
+  border-top:2px solid var(--brass);
+  border-left:2px solid var(--brass);
+}
+.formula-card::after{
+  content:'';position:absolute;bottom:-1px;right:-1px;
+  width:60px;height:60px;
+  border-bottom:2px solid var(--brass);
+  border-right:2px solid var(--brass);
+}
+.formula-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:1.6rem;
+  border-bottom:1px solid var(--line2);
+  margin-bottom:2rem;
+}
+.formula-name{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.3rem;letter-spacing:-0.005em;
+}
+.formula-name em{color:var(--brass);font-style:italic;font-weight:400;}
+.formula-no{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--brass);opacity:0.7;
+}
+
+.fr-row{
+  display:grid;
+  grid-template-columns:18px 130px 1fr 50px;
+  gap:1rem;
+  align-items:center;
+  padding:0.9rem 0;
+  border-bottom:1px dashed rgba(239,231,210,0.05);
+  cursor:default;
+  transition:background 0.25s ease;
+}
+.fr-row:hover{background:rgba(201,163,91,0.04);}
+.fr-row:last-child{border-bottom:none;}
+.fr-swatch{
+  width:14px;height:14px;border-radius:50%;
+  border:1px solid rgba(239,231,210,0.15);
+}
+.fr-name{
+  display:flex;flex-direction:column;gap:0.15rem;
+}
+.fr-name .pillar{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--brass);opacity:0.75;
+}
+.fr-name .role{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:0.98rem;
+}
+.fr-bar{
+  height:6px;background:rgba(239,231,210,0.05);
+  border:1px solid rgba(239,231,210,0.06);
+  position:relative;overflow:hidden;
+}
+.fr-fill{
+  position:absolute;left:0;top:0;bottom:0;
+  background:linear-gradient(90deg,var(--brass-d),var(--brass));
+  width:0%;
+  transition:width 1.4s cubic-bezier(0.2,0.7,0.2,1);
+}
+.fr-pct{
+  font-family:'JetBrains Mono',monospace;font-size:0.72rem;
+  color:var(--brass);text-align:right;font-weight:400;
+}
+
+.fr-detail{
+  margin-top:2rem;padding-top:1.6rem;
+  border-top:1px solid var(--line2);
+}
+.fr-detail-label{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--brass);opacity:0.7;margin-bottom:0.7rem;
+}
+.fr-detail-body{
+  font-size:0.92rem;line-height:1.75;opacity:0.7;
+}
+.fr-detail-body strong{color:var(--bone);font-weight:400;opacity:1;}
+
+.formula-aside{
+  padding:0.5rem 0 0;
+  position:relative;
+}
+.formula-aside .lede{margin-bottom:2rem;}
+.formula-stat-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);
+}
+.formula-stat{
+  background:var(--bistre);padding:1.4rem 1.2rem;
+}
+.formula-stat .v{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.6rem;color:var(--brass);line-height:1;
+}
+.formula-stat .l{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.2em;text-transform:uppercase;opacity:0.5;
+  margin-top:0.4rem;
+}
+.formula-stat .d{
+  font-size:0.78rem;opacity:0.55;margin-top:0.3rem;line-height:1.4;
+}
+
+/* === FOLIO III: STRAND BRAID CHART === */
+.setting-wrap{
+  display:grid;grid-template-columns:1.4fr 1fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:start;
+}
+@media (max-width:980px){.setting-wrap{grid-template-columns:1fr;}}
+
+.strand-figure{
+  border:1px solid var(--line2);
+  background:var(--clove);
+  padding:2rem 1.8rem;
+  position:relative;
+}
+.strand-cap{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:1.4rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid var(--line);
+}
+.strand-cap .t{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.1rem;
+}
+.strand-cap .s{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--brass);opacity:0.7;
+}
+#strandSvg{
+  width:100%;height:auto;display:block;
+}
+.strand-legend{
+  display:flex;gap:1.6rem;flex-wrap:wrap;
+  margin-top:1.2rem;padding-top:1.2rem;
+  border-top:1px solid var(--line);
+}
+.strand-leg{
+  display:flex;align-items:center;gap:0.5rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.18em;text-transform:uppercase;opacity:0.7;
+}
+.strand-leg::before{
+  content:'';width:14px;height:2px;background:var(--brass);
+}
+.strand-leg.s2::before{background:var(--henna);}
+.strand-leg.s3::before{background:#8FA67D;}
+
+.setting-aside{display:flex;flex-direction:column;gap:1.4rem;}
+.headline-stat{
+  border:1px solid var(--line);padding:1.6rem 1.4rem;
+  background:var(--clove);
+  position:relative;
+}
+.headline-stat::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:2px;
+  background:var(--brass);
+  transform:scaleY(0);transform-origin:top;
+  transition:transform 0.8s ease-out;
+}
+.in .headline-stat::before{transform:scaleY(1);}
+.headline-stat .l{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  opacity:0.55;margin-bottom:0.7rem;
+}
+.headline-stat .v{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:2rem;color:var(--brass);line-height:1;
+}
+.headline-stat.neg .v{color:#8FA67D;}
+.headline-stat .d{
+  font-size:0.84rem;line-height:1.55;opacity:0.6;
+  margin-top:0.6rem;
+}
+
+/* === FOLIO IV: SALON FLOOR PLAN === */
+.floor-wrap{
+  display:grid;grid-template-columns:1.1fr 1fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:start;
+}
+@media (max-width:980px){.floor-wrap{grid-template-columns:1fr;}}
+
+.floor-plan{
+  border:1px solid var(--line2);
+  background:
+    linear-gradient(180deg,var(--clove) 0%,rgba(26,23,20,0.4) 100%);
+  padding:2rem;
+  position:relative;
+  min-height:560px;
+}
+.floor-plan::before,.floor-plan::after{
+  content:'';position:absolute;
+  width:40px;height:40px;
+  border:1px solid var(--brass);
+  opacity:0.4;
+}
+.floor-plan::before{top:0.7rem;left:0.7rem;border-right:none;border-bottom:none;}
+.floor-plan::after{bottom:0.7rem;right:0.7rem;border-left:none;border-top:none;}
+
+.floor-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:1.4rem;
+}
+.floor-head .t{
+  font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.05rem;
+}
+.floor-head .s{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--brass);opacity:0.7;
+}
+#floorSvg{
+  width:100%;display:block;
+  min-height:440px;
+}
+
+.station-detail{
+  border:1px solid var(--line);
+  padding:1.6rem;background:var(--clove);
+  margin-top:1.4rem;
+  min-height:130px;
+  transition:border-color 0.3s ease;
+}
+.station-detail.active{border-color:var(--brass);}
+.station-detail .sd-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:0.6rem;
+}
+.station-detail .sd-name{
+  font-family:'Bodoni Moda',serif;font-weight:500;font-size:1.15rem;
+}
+.station-detail .sd-num{
+  font-family:'JetBrains Mono',monospace;font-size:0.62rem;
+  color:var(--brass);letter-spacing:0.16em;
+}
+.station-detail .sd-rev{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.6rem;color:var(--brass);line-height:1;
+  margin-top:0.6rem;
+}
+.station-detail .sd-meta{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.15em;text-transform:uppercase;
+  opacity:0.55;margin-top:0.6rem;
+}
+.station-detail .sd-tag{
+  display:inline-block;
+  font-family:'JetBrains Mono',monospace;font-size:0.5rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  padding:0.2rem 0.55rem;
+  border:1px solid var(--brass);color:var(--brass);
+  margin-top:0.7rem;
+}
+.station-detail .sd-tag.new{border-color:var(--henna);color:var(--henna);}
+
+.floor-aside{display:flex;flex-direction:column;gap:1.2rem;}
+.fa-stat-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+}
+.fa-stat{
+  background:var(--bistre);padding:1.3rem 1.2rem;
+}
+.fa-stat .l{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.2em;text-transform:uppercase;opacity:0.5;
+}
+.fa-stat .v{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.4rem;color:var(--brass);line-height:1;
+  margin-top:0.5rem;
+}
+.fa-stat .d{
+  font-size:0.78rem;opacity:0.55;margin-top:0.3rem;line-height:1.4;
+}
+
+/* === FOLIO V: MARGINALIA === */
+.marginalia{
+  background:
+    repeating-linear-gradient(180deg,
+      transparent 0,transparent 38px,
+      var(--line) 38px,var(--line) 39px);
+  padding:2rem clamp(1.4rem,4vw,3rem);
+  border:1px solid var(--line2);
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,3.5rem);
+}
+@media (max-width:880px){.marginalia{grid-template-columns:1fr;}}
+.marginalia::before{
+  content:'';position:absolute;top:0;left:50%;bottom:0;width:1px;
+  background:var(--henna);opacity:0.18;
+}
+@media (max-width:880px){.marginalia::before{display:none;}}
+
+.margin-note{
+  position:relative;
+  padding:1rem 0;
+}
+.margin-note .mn-num{
+  position:absolute;left:-2rem;top:1.2rem;
+  font-family:'Bodoni Moda',serif;font-style:italic;
+  font-size:1.4rem;color:var(--henna);font-weight:400;
+}
+.margin-note .mn-hand{
+  font-family:'Caveat',cursive;
+  font-size:1.6rem;
+  color:var(--henna);
+  line-height:1.2;
+  margin-bottom:0.4rem;
+}
+.margin-note .mn-title{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.3rem;letter-spacing:-0.005em;
+  margin-bottom:0.7rem;
+}
+.margin-note .mn-title em{color:var(--brass);font-style:italic;}
+.margin-note .mn-body{
+  font-size:0.92rem;line-height:1.75;opacity:0.66;
+}
+.margin-note .mn-body strong{color:var(--bone);font-weight:400;opacity:1;}
+.margin-note .mn-underline{
+  background-image:linear-gradient(var(--brass),var(--brass));
+  background-size:100% 1px;
+  background-repeat:no-repeat;
+  background-position:0 95%;
+  padding-bottom:1px;
+}
+
+/* === FOLIO VI: APPOINTMENT CARD === */
+.appointment{
+  border:1px solid var(--brass);
+  background:linear-gradient(180deg,var(--clove) 0%,var(--clove2) 100%);
+  padding:clamp(2rem,4vw,3.5rem);
+  position:relative;
+  max-width:920px;
+  margin:0 auto;
+}
+.appointment::before{
+  content:'';position:absolute;top:-1px;left:-1px;right:-1px;height:4px;
+  background:linear-gradient(90deg,transparent 0%,var(--brass) 30%,var(--brass) 70%,transparent 100%);
+}
+.appointment-grid{
+  display:grid;grid-template-columns:1.2fr 1fr;
+  gap:clamp(2rem,5vw,4rem);align-items:center;
+}
+@media (max-width:780px){.appointment-grid{grid-template-columns:1fr;}}
+.appointment-h{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.28em;text-transform:uppercase;
+  color:var(--brass);opacity:0.8;margin-bottom:1.4rem;
+}
+.appointment-title{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);
+  line-height:1.1;letter-spacing:-0.008em;
+  margin-bottom:1.2rem;
+}
+.appointment-title em{color:var(--brass);font-style:italic;font-weight:400;}
+.appointment-sub{
+  font-size:0.95rem;line-height:1.7;opacity:0.65;font-weight:300;
+  max-width:480px;
+}
+.appointment-slots{display:flex;flex-direction:column;gap:0.6rem;}
+.slot{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.1rem 1.3rem;
+  border:1px solid var(--line2);
+  background:rgba(10,9,8,0.6);
+  text-decoration:none;color:var(--bone);
+  transition:all 0.28s ease;
+}
+.slot:hover{
+  border-color:var(--brass);
+  background:rgba(201,163,91,0.06);
+  transform:translateX(4px);
+}
+.slot .sl-l{
+  font-family:'JetBrains Mono',monospace;font-size:0.55rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  opacity:0.55;margin-bottom:0.3rem;display:block;
+}
+.slot .sl-v{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.05rem;
+}
+.slot .sl-arrow{
+  font-family:'Bodoni Moda',serif;color:var(--brass);
+  font-size:1.3rem;opacity:0.7;
+}
+
+/* === FOOTER === */
+.colophon{
+  padding:3rem clamp(1.5rem,5vw,4rem);
+  border-top:1px solid var(--line);
+  text-align:center;
+  margin-top:4rem;
+}
+.colophon-mark{
+  font-family:'Bodoni Moda',serif;font-style:italic;
+  font-size:1.4rem;color:var(--brass);font-weight:400;
+  margin-bottom:1rem;
+}
+.colophon-name{
+  font-family:'Bodoni Moda',serif;font-weight:500;
+  font-size:1.1rem;letter-spacing:0.04em;
+  margin-bottom:0.4rem;
+}
+.colophon-role{
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  opacity:0.5;margin-bottom:1.6rem;
+}
+.colophon-links{
+  display:flex;justify-content:center;gap:2rem;
+  font-family:'JetBrains Mono',monospace;font-size:0.6rem;
+  letter-spacing:0.22em;text-transform:uppercase;
+  flex-wrap:wrap;
+  margin-bottom:1.6rem;
+}
+.colophon-links a{color:var(--bone);opacity:0.55;text-decoration:none;transition:opacity 0.25s ease, color 0.25s ease;}
+.colophon-links a:hover{opacity:1;color:var(--brass-l);}
+.colophon-legal{
+  font-family:'JetBrains Mono',monospace;font-size:0.54rem;
+  letter-spacing:0.18em;text-transform:uppercase;
+  opacity:0.3;
+}
+
+/* === REVEAL === */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.9s ease, transform 0.9s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* === CUT DIAGRAM ANIMATIONS === */
+#cutDiagram .cd-rot1{transform-origin:300px 300px;animation:cdrot1 38s linear infinite;}
+#cutDiagram .cd-rot2{transform-origin:300px 300px;animation:cdrot2 56s linear infinite;}
+#cutDiagram .cd-pulse{animation:cdpulse 4s ease-in-out infinite;transform-origin:300px 300px;}
+@keyframes cdrot1{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+@keyframes cdrot2{from{transform:rotate(360deg);}to{transform:rotate(0deg);}}
+@keyframes cdpulse{0%,100%{opacity:0.6;}50%{opacity:1;}}
+
+/* === ACCESSIBILITY === */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:0.001s !important;transition-duration:0.001s !important;}
+}
+
+/* === MOBILE TIGHTENING === */
+@media (max-width:600px){
+  .nav-folios{display:none;}
+  .hero-foot{flex-direction:column;align-items:flex-start;}
+  .hero-credit{flex-direction:column;gap:1rem;}
+  .consult-row{grid-template-columns:1fr;gap:0.3rem;}
+  .consult-row .ck{font-size:0.55rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="scrollBar"></div>
+
+<nav id="topNav">
+  <div class="nav-brand">TONI<em>&amp;</em>GUY <span style="opacity:0.5;margin-left:0.6rem;font-weight:400;letter-spacing:0.12em;">— THE ATELIER MONOGRAPH</span></div>
+  <div class="nav-folios">
+    <a href="#folio-1"><span class="roman">I.</span>Consultation</a>
+    <a href="#folio-2"><span class="roman">II.</span>Composition</a>
+    <a href="#folio-3"><span class="roman">III.</span>Setting</a>
+    <a href="#folio-4"><span class="roman">IV.</span>Sixteen</a>
+    <a href="#folio-5"><span class="roman">V.</span>Marginalia</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="hero-eyebrow">A craft monograph · India · 2025–2026</div>
+      <h1 class="hero-h1">Sixteen stores.<br>One <em>cut</em>.</h1>
+      <p class="hero-tag">A growth engagement with <strong>TONI&amp;GUY India</strong> — the structural overhaul of a 16-store network. Drawn here as a craft monograph: consultation, composition, setting, and the resulting marks on the ledger.</p>
+      <div class="hero-credit">
+        <div><span class="crl mono">Client</span><span class="crv">A global hairdressing house</span></div>
+        <div><span class="crl mono">Engagement</span><span class="crv">16-month performance overhaul</span></div>
+        <div><span class="crl mono">By</span><span class="crv">Daniel Deepak</span></div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- THE GEOMETRIC CUT DIAGRAM -->
+      <svg id="cutDiagram" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="cdGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C9A35B" stop-opacity="0.18"/>
+            <stop offset="60%" stop-color="#C9A35B" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="#C9A35B" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- ambient glow -->
+        <circle cx="300" cy="300" r="280" fill="url(#cdGlow)"/>
+
+        <!-- outer fixed concentric rings -->
+        <circle cx="300" cy="300" r="270" fill="none" stroke="#C9A35B" stroke-opacity="0.15" stroke-width="0.6"/>
+        <circle cx="300" cy="300" r="240" fill="none" stroke="#C9A35B" stroke-opacity="0.2" stroke-width="0.6"/>
+
+        <!-- slow counter-rotating sectional ring -->
+        <g class="cd-rot2">
+          <circle cx="300" cy="300" r="200" fill="none" stroke="#C9A35B" stroke-opacity="0.4" stroke-width="0.8" stroke-dasharray="3 6"/>
+          <!-- 16 tick marks for 16 stores -->
+          <g stroke="#C9A35B" stroke-width="1.2" stroke-opacity="0.7">
+            <line x1="300" y1="98" x2="300" y2="110"/>
+            <line x1="377" y1="113.7" x2="372.5" y2="124.8" transform="rotate(22.5 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(45 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(67.5 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(90 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(112.5 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(135 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(157.5 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(180 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(202.5 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(225 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(247.5 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(270 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(292.5 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(315 300 300)"/>
+            <line x1="300" y1="98" x2="300" y2="110" transform="rotate(337.5 300 300)"/>
+          </g>
+        </g>
+
+        <!-- radial sectional lines (slowly rotating clockwise) -->
+        <g class="cd-rot1" stroke="#C9A35B" stroke-opacity="0.5" stroke-width="0.5">
+          <line x1="300" y1="60" x2="300" y2="540"/>
+          <line x1="300" y1="60" x2="300" y2="540" transform="rotate(30 300 300)"/>
+          <line x1="300" y1="60" x2="300" y2="540" transform="rotate(60 300 300)"/>
+          <line x1="300" y1="60" x2="300" y2="540" transform="rotate(90 300 300)"/>
+          <line x1="300" y1="60" x2="300" y2="540" transform="rotate(120 300 300)"/>
+          <line x1="300" y1="60" x2="300" y2="540" transform="rotate(150 300 300)"/>
+        </g>
+
+        <!-- mid-ring -->
+        <circle cx="300" cy="300" r="160" fill="none" stroke="#C9A35B" stroke-opacity="0.3" stroke-width="0.7"/>
+        <circle cx="300" cy="300" r="120" fill="none" stroke="#C9A35B" stroke-opacity="0.35" stroke-width="0.7"/>
+        <circle cx="300" cy="300" r="80" fill="none" stroke="#C9A35B" stroke-opacity="0.5" stroke-width="0.8"/>
+
+        <!-- panel highlights — quadrant arcs showing "sections" -->
+        <path d="M 300 100 A 200 200 0 0 1 487 240" fill="none" stroke="#E8C77A" stroke-width="1.6" stroke-opacity="0.85"/>
+        <path d="M 487 360 A 200 200 0 0 1 300 500" fill="none" stroke="#E8C77A" stroke-width="1.6" stroke-opacity="0.55"/>
+        <path d="M 113 360 A 200 200 0 0 1 113 240" fill="none" stroke="#E8C77A" stroke-width="1.6" stroke-opacity="0.35"/>
+
+        <!-- inner panel boundaries -->
+        <g class="cd-pulse">
+          <circle cx="300" cy="300" r="42" fill="none" stroke="#E8C77A" stroke-width="1.2"/>
+          <circle cx="300" cy="300" r="6" fill="#C9A35B"/>
+        </g>
+
+        <!-- weight markers (small dots at section ends) -->
+        <circle cx="300" cy="100" r="3.5" fill="#C9A35B"/>
+        <circle cx="487" cy="240" r="3.5" fill="#C9A35B"/>
+        <circle cx="487" cy="360" r="3.5" fill="#C9A35B" fill-opacity="0.55"/>
+        <circle cx="300" cy="500" r="3.5" fill="#C9A35B" fill-opacity="0.55"/>
+        <circle cx="113" cy="360" r="3.5" fill="#C9A35B" fill-opacity="0.4"/>
+        <circle cx="113" cy="240" r="3.5" fill="#C9A35B" fill-opacity="0.4"/>
+
+        <!-- crosshair -->
+        <line x1="290" y1="300" x2="310" y2="300" stroke="#E8C77A" stroke-width="1.2"/>
+        <line x1="300" y1="290" x2="300" y2="310" stroke="#E8C77A" stroke-width="1.2"/>
+
+        <!-- technical readout numbers -->
+        <text x="300" y="56" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#C9A35B" fill-opacity="0.7" letter-spacing="2">0°</text>
+        <text x="544" y="304" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#C9A35B" fill-opacity="0.7" letter-spacing="2">90°</text>
+        <text x="300" y="556" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#C9A35B" fill-opacity="0.7" letter-spacing="2">180°</text>
+        <text x="56" y="304" text-anchor="middle" font-family="JetBrains Mono" font-size="10" fill="#C9A35B" fill-opacity="0.7" letter-spacing="2">270°</text>
+      </svg>
+
+      <div class="cd-readout r1">
+        Section · panel one
+        <strong>elevation 90°</strong>
+      </div>
+      <div class="cd-readout r2">
+        Network · 16 panels
+        <strong>weight: distributed</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-foot">
+    <div class="hero-kpis">
+      <div class="hkpi"><div class="v">26.9M</div><div class="l">Impressions</div></div>
+      <div class="hkpi"><div class="v">475K</div><div class="l">Clicks</div></div>
+      <div class="hkpi"><div class="v">173K</div><div class="l">Conversions</div></div>
+      <div class="hkpi neg"><div class="v">−67%</div><div class="l">CPC</div></div>
+      <div class="hkpi"><div class="v">+276%</div><div class="l">CTR</div></div>
+      <div class="hkpi"><div class="v">₹369M</div><div class="l">Revenue</div></div>
+    </div>
+    <div class="scroll-cue"><div class="bar"></div>Begin reading</div>
+  </div>
+</section>
+
+<!-- ===== CUT LINE I ===== -->
+<div class="cutline">
+  <svg viewBox="0 0 1500 24" preserveAspectRatio="none" aria-hidden="true">
+    <line class="cl-path" x1="20" y1="12" x2="1480" y2="12"/>
+    <g class="cl-scissor" transform="translate(740,4)">
+      <circle cx="4" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <circle cx="16" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <path d="M 6.5 11 L 20 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+      <path d="M 13.5 11 L 0 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+    </g>
+  </svg>
+  <div class="cl-label">Folio I</div>
+</div>
+
+<!-- ===== FOLIO I — THE CONSULTATION ===== -->
+<section class="folio reveal" id="folio-1">
+  <div class="folio-head">
+    <div class="folio-numeral">I.</div>
+    <div class="folio-title-block">
+      <div class="chapter">The Consultation</div>
+      <h2 class="folio-title">Before the cut — a <em>diagnosis</em>.</h2>
+    </div>
+    <div class="folio-tag">state before intervention</div>
+  </div>
+
+  <p class="lede">Every cut begins on the consultation card. So did this one. A 16-store network, profitable but bleeding through four predictable seams. The brief was simple: stop the bleed, then build something that compounds.</p>
+
+  <div class="consultation">
+    <!-- LEFT: consultation card -->
+    <div class="consult-card">
+      <div class="consult-stamp">For internal review</div>
+      <div class="consult-h">— Consultation Card · No. 01 —</div>
+      <div class="consult-row">
+        <span class="ck">Client</span>
+        <span class="cv">A global hairdressing house, India franchise — <em>16 stores</em></span>
+      </div>
+      <div class="consult-row">
+        <span class="ck">Region</span>
+        <span class="cv">Bengaluru, India</span>
+      </div>
+      <div class="consult-row">
+        <span class="ck">Engagement</span>
+        <span class="cv">Performance marketing &amp; growth · 16 months · 2025–2026</span>
+      </div>
+      <div class="consult-row">
+        <span class="ck">Channels</span>
+        <span class="cv">Google Ads · Meta · Organic · Email · WhatsApp · CRM</span>
+      </div>
+      <div class="consult-row">
+        <span class="ck">Brief</span>
+        <span class="cv">Reduce blended CAC. Unify execution. Build a flywheel where each store informs the next.</span>
+      </div>
+      <div class="consult-row">
+        <span class="ck">Constraint</span>
+        <span class="cv">No CRM. No central playbook. <em>Sixteen ways of doing one thing.</em></span>
+      </div>
+    </div>
+
+    <!-- RIGHT: findings -->
+    <div class="findings">
+      <div class="finding">
+        <div class="finding-num">i.</div>
+        <h3 class="finding-title">Fragmented execution.</h3>
+        <p class="finding-body">Each store improvised its own marketing in isolation. Inconsistent messaging, no network-level learning, every test ran once and disappeared.</p>
+        <span class="finding-margin hand">no playbook. each store its own animal.</span>
+      </div>
+      <div class="finding">
+        <div class="finding-num">ii.</div>
+        <h3 class="finding-title">Poor creative–audience fit.</h3>
+        <p class="finding-body">CPC at ₹14+. CTR near 1%. Quality scores punished every auction. Generic creative served to generic audiences produced generic, expensive results.</p>
+        <span class="finding-margin hand">paying retail for a wholesale problem.</span>
+      </div>
+      <div class="finding">
+        <div class="finding-num">iii.</div>
+        <h3 class="finding-title">No CRM infrastructure.</h3>
+        <p class="finding-body">Customer data scattered across booking sheets and WhatsApp threads. No unified view. No segmentation. No way to identify a high-value client or act on behaviour.</p>
+        <span class="finding-margin hand">flying blind. fix this first.</span>
+      </div>
+      <div class="finding">
+        <div class="finding-num">iv.</div>
+        <h3 class="finding-title">27% client churn.</h3>
+        <p class="finding-body">Clients vanished after one visit. No lifecycle, no re-engagement, no loyalty architecture. The acquisition machine was filling a bucket with a hole in the bottom.</p>
+        <span class="finding-margin hand">plug the hole before pouring more water.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUT LINE II ===== -->
+<div class="cutline">
+  <svg viewBox="0 0 1500 24" preserveAspectRatio="none" aria-hidden="true">
+    <line class="cl-path" x1="20" y1="12" x2="1480" y2="12"/>
+    <g class="cl-scissor" transform="translate(740,4)">
+      <circle cx="4" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <circle cx="16" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <path d="M 6.5 11 L 20 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+      <path d="M 13.5 11 L 0 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+    </g>
+  </svg>
+  <div class="cl-label">Folio II</div>
+</div>
+
+<!-- ===== FOLIO II — THE COMPOSITION ===== -->
+<section class="folio reveal" id="folio-2">
+  <div class="folio-head">
+    <div class="folio-numeral">II.</div>
+    <div class="folio-title-block">
+      <div class="chapter">The Composition</div>
+      <h2 class="folio-title">The growth engine, written as a <em>formula</em>.</h2>
+    </div>
+    <div class="folio-tag">six pillars · one system</div>
+  </div>
+
+  <p class="lede">A salon's colour formula isn't a recipe. It is a precise prescription — base, tone, glaze, finish — written in proportion, calibrated to the head it'll sit on. The growth engine was built the same way: six pillars, six proportions, one composition that compounds.</p>
+
+  <div class="formula-wrap">
+    <!-- LEFT: Color Formula Card -->
+    <div class="formula-card">
+      <div class="formula-head">
+        <div class="formula-name">Formula <em>№ 01</em> — Growth Engine</div>
+        <div class="formula-no">prescription · v1</div>
+      </div>
+
+      <div class="fr-row" data-fill="30">
+        <div class="fr-swatch" style="background:#C9A35B;"></div>
+        <div class="fr-name">
+          <span class="pillar">Base · Pillar 01</span>
+          <span class="role">Acquire — Google Ads, PMax &amp; Meta</span>
+        </div>
+        <div class="fr-bar"><div class="fr-fill"></div></div>
+        <div class="fr-pct">30%</div>
+      </div>
+
+      <div class="fr-row" data-fill="20">
+        <div class="fr-swatch" style="background:#E8C77A;"></div>
+        <div class="fr-name">
+          <span class="pillar">Tone · Pillar 02</span>
+          <span class="role">Experience — Web CRO &amp; booking</span>
+        </div>
+        <div class="fr-bar"><div class="fr-fill"></div></div>
+        <div class="fr-pct">20%</div>
+      </div>
+
+      <div class="fr-row" data-fill="15">
+        <div class="fr-swatch" style="background:#8A6D2A;"></div>
+        <div class="fr-name">
+          <span class="pillar">Glaze · Pillar 03</span>
+          <span class="role">Content &amp; Brand — 100+ monthly assets</span>
+        </div>
+        <div class="fr-bar"><div class="fr-fill"></div></div>
+        <div class="fr-pct">15%</div>
+      </div>
+
+      <div class="fr-row" data-fill="18">
+        <div class="fr-swatch" style="background:#A65D57;"></div>
+        <div class="fr-name">
+          <span class="pillar">Lifting · Pillar 04</span>
+          <span class="role">Engage &amp; Retain — WhatsApp, loyalty</span>
+        </div>
+        <div class="fr-bar"><div class="fr-fill"></div></div>
+        <div class="fr-pct">18%</div>
+      </div>
+
+      <div class="fr-row" data-fill="10">
+        <div class="fr-swatch" style="background:#8FA67D;"></div>
+        <div class="fr-name">
+          <span class="pillar">Bond · Pillar 05</span>
+          <span class="role">CRM &amp; Customer Data — HubSpot/Zoho</span>
+        </div>
+        <div class="fr-bar"><div class="fr-fill"></div></div>
+        <div class="fr-pct">10%</div>
+      </div>
+
+      <div class="fr-row" data-fill="7">
+        <div class="fr-swatch" style="background:#7A7570;"></div>
+        <div class="fr-name">
+          <span class="pillar">Finish · Pillar 06</span>
+          <span class="role">Measure — GA4 / GTM / Looker</span>
+        </div>
+        <div class="fr-bar"><div class="fr-fill"></div></div>
+        <div class="fr-pct">7%</div>
+      </div>
+
+      <div class="fr-detail">
+        <div class="fr-detail-label">Method</div>
+        <p class="fr-detail-body">The base sets the brief; the bond holds it; the finish is where everyone else stops measuring. <strong>Each pillar was instrumented as its own P&amp;L.</strong> No channel survived without justifying its share. Proportions were re-mixed monthly off Looker reads.</p>
+      </div>
+    </div>
+
+    <!-- RIGHT: Aside -->
+    <div class="formula-aside">
+      <p class="lede" style="font-size:1rem;margin-bottom:1.6rem;">Six pillars, applied in proportion across <strong>16 sites</strong>. The same composition, re-tuned per store.</p>
+      <p class="body-prose">112+ creatives tested. Postcode-level targeting per store. PMax for booking intent, Meta for awareness and retargeting at location level. Behind it: a unified CRM that turned 16 sets of bookings into one record, and a Looker Studio dashboard that ran the weekly executive brief faster than the meeting that used to consume it.</p>
+
+      <div class="formula-stat-row" style="margin-top:2rem;">
+        <div class="formula-stat">
+          <div class="v">112+</div>
+          <div class="l">Creatives Tested</div>
+          <div class="d">Across Google &amp; Meta · per-store variants</div>
+        </div>
+        <div class="formula-stat">
+          <div class="v">27% → 7%</div>
+          <div class="l">Churn</div>
+          <div class="d">After lifecycle infrastructure built</div>
+        </div>
+        <div class="formula-stat">
+          <div class="v">16</div>
+          <div class="l">Unified P&amp;Ls</div>
+          <div class="d">First time the network read as one</div>
+        </div>
+        <div class="formula-stat">
+          <div class="v">Weekly</div>
+          <div class="l">Exec Brief Cadence</div>
+          <div class="d">Anomaly detection per store</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUT LINE III ===== -->
+<div class="cutline">
+  <svg viewBox="0 0 1500 24" preserveAspectRatio="none" aria-hidden="true">
+    <line class="cl-path" x1="20" y1="12" x2="1480" y2="12"/>
+    <g class="cl-scissor" transform="translate(740,4)">
+      <circle cx="4" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <circle cx="16" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <path d="M 6.5 11 L 20 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+      <path d="M 13.5 11 L 0 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+    </g>
+  </svg>
+  <div class="cl-label">Folio III</div>
+</div>
+
+<!-- ===== FOLIO III — THE SETTING ===== -->
+<section class="folio reveal" id="folio-3">
+  <div class="folio-head">
+    <div class="folio-numeral">III.</div>
+    <div class="folio-title-block">
+      <div class="chapter">The Setting</div>
+      <h2 class="folio-title">How the cut <em>took</em> — sixteen months on the ledger.</h2>
+    </div>
+    <div class="folio-tag">real data · 2025 – 2026</div>
+  </div>
+
+  <p class="lede">A style is set, not finished. The proof is in what holds after the chair empties. Sixteen months of compounding — impressions, clicks, and conversions braiding upward together, with the CPC line falling underneath.</p>
+
+  <div class="setting-wrap">
+    <!-- LEFT: Strand Braid Chart -->
+    <div class="strand-figure">
+      <div class="strand-cap">
+        <span class="t display">The Braid</span>
+        <span class="s">Jan 2025 → May 2026 · indexed to start</span>
+      </div>
+
+      <svg id="strandSvg" viewBox="0 0 700 360" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gradGold" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#8A6D2A"/>
+            <stop offset="100%" stop-color="#E8C77A"/>
+          </linearGradient>
+          <linearGradient id="gradHenna" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#7A4540"/>
+            <stop offset="100%" stop-color="#C8807A"/>
+          </linearGradient>
+          <linearGradient id="gradSage" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#5E7A4D"/>
+            <stop offset="100%" stop-color="#A6BD8A"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Grid -->
+        <g stroke="rgba(239,231,210,0.05)" stroke-width="0.5">
+          <line x1="40" y1="60" x2="680" y2="60"/>
+          <line x1="40" y1="130" x2="680" y2="130"/>
+          <line x1="40" y1="200" x2="680" y2="200"/>
+          <line x1="40" y1="270" x2="680" y2="270"/>
+          <line x1="40" y1="320" x2="680" y2="320"/>
+        </g>
+
+        <!-- Y axis labels -->
+        <g font-family="JetBrains Mono" font-size="8.5" fill="#7A7570" letter-spacing="1">
+          <text x="36" y="63" text-anchor="end">5×</text>
+          <text x="36" y="133" text-anchor="end">3.5×</text>
+          <text x="36" y="203" text-anchor="end">2.5×</text>
+          <text x="36" y="273" text-anchor="end">1.5×</text>
+          <text x="36" y="323" text-anchor="end">1×</text>
+        </g>
+
+        <!-- X axis labels (months) -->
+        <g font-family="JetBrains Mono" font-size="8" fill="#7A7570" letter-spacing="1.5">
+          <text x="60" y="345" text-anchor="middle">Jan'25</text>
+          <text x="200" y="345" text-anchor="middle">May'25</text>
+          <text x="340" y="345" text-anchor="middle">Sep'25</text>
+          <text x="480" y="345" text-anchor="middle">Jan'26</text>
+          <text x="620" y="345" text-anchor="middle">May'26</text>
+        </g>
+
+        <!-- THE BRAID — three strands twisting together -->
+        <!-- Strand 1: Impressions (gold) -->
+        <path id="strand1" d="M 60 305 Q 130 270, 200 260 T 340 175 T 480 105 T 660 60"
+          stroke="url(#gradGold)" stroke-width="2.2" fill="none" stroke-linecap="round"
+          stroke-dasharray="2000" stroke-dashoffset="2000"/>
+
+        <!-- Strand 2: Conversions (henna) — undulating around the gold -->
+        <path id="strand2" d="M 60 320 Q 130 295, 200 275 T 340 195 T 480 130 T 660 80"
+          stroke="url(#gradHenna)" stroke-width="1.8" fill="none" stroke-linecap="round"
+          stroke-dasharray="2000" stroke-dashoffset="2000"/>
+
+        <!-- Strand 3: CTR (sage) -->
+        <path id="strand3" d="M 60 315 Q 130 285, 200 270 T 340 188 T 480 120 T 660 70"
+          stroke="url(#gradSage)" stroke-width="1.4" fill="none" stroke-linecap="round"
+          stroke-dasharray="2000" stroke-dashoffset="2000"
+          stroke-opacity="0.85"/>
+
+        <!-- weight nodes — the twists -->
+        <circle class="strand-node" cx="60" cy="312" r="3" fill="#C9A35B"/>
+        <circle class="strand-node" cx="200" cy="270" r="3" fill="#C9A35B"/>
+        <circle class="strand-node" cx="340" cy="186" r="3" fill="#C9A35B"/>
+        <circle class="strand-node" cx="480" cy="118" r="3" fill="#C9A35B"/>
+        <circle class="strand-node" cx="620" cy="68" r="4" fill="#E8C77A"/>
+
+        <!-- Peak callout -->
+        <line x1="620" y1="68" x2="620" y2="40" stroke="#E8C77A" stroke-width="0.8" stroke-dasharray="2 2"/>
+        <text x="620" y="32" text-anchor="middle" font-family="Bodoni Moda" font-style="italic" font-size="12" fill="#E8C77A">peak — May '25</text>
+
+        <!-- The annotation: where CPC fell -->
+        <text x="200" y="46" font-family="Caveat" font-size="14" fill="#A65D57" opacity="0.85">↓ CPC collapses here</text>
+        <line x1="200" y1="50" x2="200" y2="260" stroke="#A65D57" stroke-width="0.6" stroke-dasharray="2 3" opacity="0.5"/>
+      </svg>
+
+      <div class="strand-legend">
+        <span class="strand-leg">Impressions ×5</span>
+        <span class="strand-leg s2">Conversions ×3.7</span>
+        <span class="strand-leg s3">CTR ×3.8</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Headline Stats -->
+    <div class="setting-aside">
+      <div class="headline-stat">
+        <div class="l">Monthly Conversions</div>
+        <div class="v">+271%</div>
+        <div class="d">Start → peak lift over 16 months.</div>
+      </div>
+      <div class="headline-stat neg">
+        <div class="l">Cost Per Click</div>
+        <div class="v">−67%</div>
+        <div class="d">₹14+ → ₹4.60 average. The auction rewarded relevance.</div>
+      </div>
+      <div class="headline-stat">
+        <div class="l">Click-Through Rate</div>
+        <div class="v">+276%</div>
+        <div class="d">~1% → 3.8%. Category benchmark left behind.</div>
+      </div>
+      <div class="headline-stat">
+        <div class="l">Best CPL · May 2025</div>
+        <div class="v">$0.10</div>
+        <div class="d">Peak month. The composition held.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUT LINE IV ===== -->
+<div class="cutline">
+  <svg viewBox="0 0 1500 24" preserveAspectRatio="none" aria-hidden="true">
+    <line class="cl-path" x1="20" y1="12" x2="1480" y2="12"/>
+    <g class="cl-scissor" transform="translate(740,4)">
+      <circle cx="4" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <circle cx="16" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <path d="M 6.5 11 L 20 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+      <path d="M 13.5 11 L 0 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+    </g>
+  </svg>
+  <div class="cl-label">Folio IV</div>
+</div>
+
+<!-- ===== FOLIO IV — THE SIXTEEN ===== -->
+<section class="folio reveal" id="folio-4">
+  <div class="folio-head">
+    <div class="folio-numeral">IV.</div>
+    <div class="folio-title-block">
+      <div class="chapter">The Sixteen</div>
+      <h2 class="folio-title">Sixteen chairs. <em>Sixteen P&amp;Ls.</em></h2>
+    </div>
+    <div class="folio-tag">Mar 2025 – Mar 2026 · click a chair</div>
+  </div>
+
+  <p class="lede">A network reads as one balance sheet only when each chair is measured against its own. Two flagships anchor 34% of revenue. New chairs ramped in months. The bottom eight needed different creative entirely — that's what granularity revealed.</p>
+
+  <div class="floor-wrap">
+    <!-- LEFT: Floor Plan -->
+    <div>
+      <div class="floor-plan">
+        <div class="floor-head">
+          <span class="t display">Floor Plan</span>
+          <span class="s">hover · click any chair</span>
+        </div>
+
+        <svg id="floorSvg" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="mirrorN" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E8C77A" stop-opacity="0.5"/>
+              <stop offset="50%" stop-color="#E8C77A" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#E8C77A" stop-opacity="0.04"/>
+            </linearGradient>
+            <linearGradient id="mirrorS" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E8C77A" stop-opacity="0.04"/>
+              <stop offset="50%" stop-color="#E8C77A" stop-opacity="0.2"/>
+              <stop offset="100%" stop-color="#E8C77A" stop-opacity="0.5"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Walls (double-stroke for thickness) -->
+          <rect x="20" y="20" width="600" height="440" rx="2"
+            fill="rgba(201,163,91,0.02)" stroke="#C9A35B" stroke-width="1.4" stroke-opacity="0.55"/>
+          <rect x="26" y="26" width="588" height="428" rx="1"
+            fill="none" stroke="#C9A35B" stroke-width="0.4" stroke-opacity="0.22"/>
+
+          <!-- Floor parquet hint -->
+          <g opacity="0.06" stroke="#C9A35B" stroke-width="0.4">
+            <line x1="32" y1="80" x2="608" y2="80"/>
+            <line x1="32" y1="160" x2="608" y2="160"/>
+            <line x1="32" y1="240" x2="608" y2="240"/>
+            <line x1="32" y1="320" x2="608" y2="320"/>
+            <line x1="32" y1="400" x2="608" y2="400"/>
+          </g>
+
+          <!-- Top mirror run -->
+          <rect x="60" y="35" width="520" height="22" fill="url(#mirrorN)" stroke="#C9A35B" stroke-width="0.6" stroke-opacity="0.6"/>
+          <text x="320" y="49" text-anchor="middle" font-family="JetBrains Mono" font-size="7.5" fill="#C9A35B" letter-spacing="3" opacity="0.72">— MIRROR RUN · NORTH —</text>
+
+          <!-- Bottom mirror run -->
+          <rect x="60" y="423" width="520" height="22" fill="url(#mirrorS)" stroke="#C9A35B" stroke-width="0.6" stroke-opacity="0.6"/>
+          <text x="320" y="437" text-anchor="middle" font-family="JetBrains Mono" font-size="7.5" fill="#C9A35B" letter-spacing="3" opacity="0.72">— MIRROR RUN · SOUTH —</text>
+
+          <!-- Wash basin cluster (centre) — 4 horseshoe basins + counter -->
+          <g opacity="0.7">
+            <rect x="216" y="218" width="172" height="44" fill="rgba(201,163,91,0.04)" stroke="#C9A35B" stroke-width="0.5" stroke-opacity="0.35" rx="2"/>
+            <path d="M 232 240 a 11 11 0 0 1 22 0" fill="none" stroke="#C9A35B" stroke-width="0.9" stroke-opacity="0.7"/>
+            <path d="M 268 240 a 11 11 0 0 1 22 0" fill="none" stroke="#C9A35B" stroke-width="0.9" stroke-opacity="0.7"/>
+            <path d="M 304 240 a 11 11 0 0 1 22 0" fill="none" stroke="#C9A35B" stroke-width="0.9" stroke-opacity="0.7"/>
+            <path d="M 340 240 a 11 11 0 0 1 22 0" fill="none" stroke="#C9A35B" stroke-width="0.9" stroke-opacity="0.7"/>
+            <text x="302" y="278" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" fill="#C9A35B" letter-spacing="2.5" opacity="0.65">WASH BASINS · 4</text>
+          </g>
+
+          <!-- Reception desk (right side) -->
+          <g opacity="0.7">
+            <rect x="478" y="220" width="100" height="42" fill="rgba(201,163,91,0.06)" stroke="#C9A35B" stroke-width="0.7" stroke-opacity="0.6" rx="1"/>
+            <line x1="478" y1="230" x2="578" y2="230" stroke="#C9A35B" stroke-width="0.5" stroke-opacity="0.4"/>
+            <text x="528" y="246" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" fill="#C9A35B" letter-spacing="2" opacity="0.75">RECEPTION</text>
+            <text x="528" y="257" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#C9A35B" letter-spacing="1.8" opacity="0.55">DESK</text>
+            <!-- Entry arrow -->
+            <line x1="600" y1="240" x2="615" y2="240" stroke="#C9A35B" stroke-width="1.2" stroke-opacity="0.75"/>
+            <polyline points="610,235 615,240 610,245" fill="none" stroke="#C9A35B" stroke-width="1.2" stroke-opacity="0.75"/>
+            <text x="608" y="225" text-anchor="middle" font-family="JetBrains Mono" font-size="6" fill="#C9A35B" letter-spacing="1.5" opacity="0.7">ENTRY</text>
+          </g>
+
+          <!-- Products / retail shelf (left side) -->
+          <g opacity="0.55">
+            <rect x="62" y="220" width="100" height="42" fill="rgba(201,163,91,0.04)" stroke="#C9A35B" stroke-width="0.6" stroke-opacity="0.45" rx="1" stroke-dasharray="3 3"/>
+            <line x1="62" y1="232" x2="162" y2="232" stroke="#C9A35B" stroke-width="0.4" stroke-opacity="0.3"/>
+            <line x1="62" y1="244" x2="162" y2="244" stroke="#C9A35B" stroke-width="0.4" stroke-opacity="0.3"/>
+            <text x="112" y="256" text-anchor="middle" font-family="JetBrains Mono" font-size="6.5" fill="#C9A35B" letter-spacing="2" opacity="0.7">RETAIL SHELF</text>
+          </g>
+
+          <!-- Soft aisle markers -->
+          <line x1="60" y1="165" x2="580" y2="165" stroke="#C9A35B" stroke-width="0.35" stroke-opacity="0.13" stroke-dasharray="2 5"/>
+          <line x1="60" y1="315" x2="580" y2="315" stroke="#C9A35B" stroke-width="0.35" stroke-opacity="0.13" stroke-dasharray="2 5"/>
+
+          <!-- Stations injected by JS -->
+          <g id="stationsGroup"></g>
+        </svg>
+      </div>
+
+      <div class="station-detail" id="stationDetail">
+        <div class="sd-head">
+          <div>
+            <div class="sd-num mono">CHAIR 01 · FLAGSHIP</div>
+            <div class="sd-name">Phoenix MarketCity</div>
+          </div>
+        </div>
+        <div class="sd-rev">₹49.9M</div>
+        <div class="sd-meta">17.7% of network revenue · Mar 2025 – Mar 2026</div>
+        <span class="sd-tag">Flagship</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: Network stats + top list -->
+    <div class="floor-aside">
+      <div class="fa-stat-grid">
+        <div class="fa-stat">
+          <div class="l">Network Revenue</div>
+          <div class="v">₹282.6M</div>
+          <div class="d">Mar 2025 – Mar 2026</div>
+        </div>
+        <div class="fa-stat">
+          <div class="l">Total Orders</div>
+          <div class="v">109,645</div>
+          <div class="d">Across 16 chairs</div>
+        </div>
+        <div class="fa-stat">
+          <div class="l">From Top 5</div>
+          <div class="v">60%</div>
+          <div class="d">Concentration risk, mapped</div>
+        </div>
+        <div class="fa-stat">
+          <div class="l">Network AOV</div>
+          <div class="v">₹2,577</div>
+          <div class="d">Average order value</div>
+        </div>
+      </div>
+
+      <p class="body-prose" style="margin-top:1rem;">Phoenix MarketCity (₹49.9M) and Phoenix Mall of Asia (₹46.2M) alone drive <strong>34% of network revenue</strong>. The acquisition playbook transferred cleanly to new chairs — Koramangala went 0 → 298 conversions in nine months, Vega City posted 321 in four. Same formula, re-tuned per chair.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUT LINE V ===== -->
+<div class="cutline">
+  <svg viewBox="0 0 1500 24" preserveAspectRatio="none" aria-hidden="true">
+    <line class="cl-path" x1="20" y1="12" x2="1480" y2="12"/>
+    <g class="cl-scissor" transform="translate(740,4)">
+      <circle cx="4" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <circle cx="16" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <path d="M 6.5 11 L 20 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+      <path d="M 13.5 11 L 0 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+    </g>
+  </svg>
+  <div class="cl-label">Folio V</div>
+</div>
+
+<!-- ===== FOLIO V — MARGINALIA ===== -->
+<section class="folio reveal" id="folio-5">
+  <div class="folio-head">
+    <div class="folio-numeral">V.</div>
+    <div class="folio-title-block">
+      <div class="chapter">Marginalia</div>
+      <h2 class="folio-title">Notes pencilled in the margin — for the <em>next marketer</em>.</h2>
+    </div>
+    <div class="folio-tag">distilled from 16 months</div>
+  </div>
+
+  <p class="lede">A craft book is most useful where the previous owner wrote in it. Four annotations — each one a hard-earned correction to a default assumption. Take them, ignore them, but don't pretend they weren't there.</p>
+
+  <div class="marginalia">
+    <div class="margin-note">
+      <div class="mn-num">i.</div>
+      <div class="mn-hand">averages lie. ask per-store.</div>
+      <h3 class="mn-title">Granularity beats <em>averages</em>.</h3>
+      <p class="mn-body">Treating 16 stores as one campaign hides winners and losers. Per-store spend revealed where to refresh creative versus where to shift budget. A city-wide average would have hidden the fact that the bottom eight stores needed <strong>entirely different creative</strong> and budget logic than the flagships.</p>
+    </div>
+
+    <div class="margin-note">
+      <div class="mn-num">ii.</div>
+      <div class="mn-hand">work the creative, not the bid.</div>
+      <h3 class="mn-title">CTR leads, <em>CPC follows</em>.</h3>
+      <p class="mn-body">Once creative–audience fit improved (CTR up 5×), CPC collapsed. <span class="mn-underline">Google rewards relevance with cheaper auctions.</span> The work was not on bids. It was on understanding which creative, which audience, which offer, at which store, at which moment — then systematising that understanding across 112+ creatives.</p>
+    </div>
+
+    <div class="margin-note">
+      <div class="mn-num">iii.</div>
+      <div class="mn-hand">retention is leverage. always.</div>
+      <h3 class="mn-title">Retention beats <em>acquisition</em>.</h3>
+      <p class="mn-body">Cutting churn from <strong>27% to 7%</strong> was worth more than any single paid optimisation. Every percentage point of retention compounds forward. The acquisition engine was filling a bucket with a hole in the bottom; we plugged the hole first.</p>
+    </div>
+
+    <div class="margin-note">
+      <div class="mn-num">iv.</div>
+      <div class="mn-hand">CRM = priority #1. don't argue.</div>
+      <h3 class="mn-title">CRM is infrastructure, <em>not a tool</em>.</h3>
+      <p class="mn-body">Without centralised data, every channel flies blind. CRM is priority #1 in any multi-location B2C. The HubSpot/Zoho implementation was the unlock for everything else — <strong>segmentation, lead scoring, lifecycle automation, attribution</strong>, and the weekly executive brief that ran decisions faster than the meeting that used to consume them.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CUT LINE VI ===== -->
+<div class="cutline">
+  <svg viewBox="0 0 1500 24" preserveAspectRatio="none" aria-hidden="true">
+    <line class="cl-path" x1="20" y1="12" x2="1480" y2="12"/>
+    <g class="cl-scissor" transform="translate(740,4)">
+      <circle cx="4" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <circle cx="16" cy="13" r="3.2" fill="none" stroke="#C9A35B" stroke-width="0.9"/>
+      <path d="M 6.5 11 L 20 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+      <path d="M 13.5 11 L 0 0" stroke="#C9A35B" stroke-width="0.9" fill="none"/>
+    </g>
+  </svg>
+  <div class="cl-label">The Card</div>
+</div>
+
+<!-- ===== APPOINTMENT CARD ===== -->
+<section class="folio reveal" id="folio-6" style="padding-top:2rem;">
+  <div class="appointment">
+    <div class="appointment-grid">
+      <div>
+        <div class="appointment-h">— The Card · Daniel Deepak —</div>
+        <h2 class="appointment-title">Want a system <em>like this one</em>?</h2>
+        <p class="appointment-sub">Open to senior performance marketing &amp; growth roles across the USA, UK, Europe &amp; Australia. Multi-location B2C, retail, hospitality, beauty &amp; lifestyle — anywhere the network reads as one balance sheet.</p>
+      </div>
+
+      <div class="appointment-slots">
+        <a class="slot" href="mailto:danieldeepak3519@gmail.com">
+          <div>
+            <span class="sl-l mono">By email</span>
+            <span class="sl-v">danieldeepak3519@gmail.com</span>
+          </div>
+          <span class="sl-arrow">→</span>
+        </a>
+        <a class="slot" href="https://linkedin.com/in/danny-ai-marketing" target="_blank" rel="noopener">
+          <div>
+            <span class="sl-l mono">LinkedIn</span>
+            <span class="sl-v">/in/danny-ai-marketing</span>
+          </div>
+          <span class="sl-arrow">→</span>
+        </a>
+        <a class="slot" href="https://dannygrowthmarketing.github.io/resume/" target="_blank" rel="noopener">
+          <div>
+            <span class="sl-l mono">Full resume</span>
+            <span class="sl-v">dannygrowthmarketing.github.io/resume</span>
+          </div>
+          <span class="sl-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLOPHON ===== -->
+<footer class="colophon">
+  <div class="colophon-mark display-i">— fin —</div>
+  <div class="colophon-name">Daniel Deepak</div>
+  <div class="colophon-role">Senior Performance Marketing · Growth · Analytics · Bangalore, India</div>
+  <div class="colophon-links">
+    <a href="https://github.com/dannygrowthmarketing" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://linkedin.com/in/danny-ai-marketing" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://dannygrowthmarketing.com" target="_blank" rel="noopener">Portfolio</a>
+    <a href="https://dannygrowthmarketing.github.io/everywatch-growth-intelligence/movement-room.html">EveryWatch</a>
+  </div>
+  <div class="colophon-legal">© 2026 Daniel Deepak · TONI&amp;GUY India growth engagement · Performance data shown with figures rounded for portfolio</div>
+</footer>
+
+<script>
+/* ===== SCROLL + NAV ===== */
+(function(){
+  const nav = document.getElementById('topNav');
+  const bar = document.getElementById('scrollBar');
+  window.addEventListener('scroll', ()=>{
+    const docH = document.body.scrollHeight - innerHeight;
+    const prog = docH > 0 ? scrollY / docH : 0;
+    bar.style.width = (prog*100)+'%';
+    nav.classList.toggle('scrolled', scrollY > 60);
+  }, {passive:true});
+})();
+
+/* ===== REVEAL ON SCROLL ===== */
+(function(){
+  const els = document.querySelectorAll('.reveal, .cutline');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:0.08});
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ===== FORMULA BARS ===== */
+(function(){
+  const rows = document.querySelectorAll('.fr-row');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const row = e.target;
+      const fill = row.querySelector('.fr-fill');
+      const pct = row.dataset.fill;
+      setTimeout(()=>{ fill.style.width = pct+'%'; }, 120);
+      io.unobserve(row);
+    });
+  },{threshold:0.4});
+  rows.forEach(r=>io.observe(r));
+})();
+
+/* ===== STRAND BRAID ANIMATION ===== */
+(function(){
+  const paths = ['strand1','strand2','strand3'].map(id=>document.getElementById(id));
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      paths.forEach((p,i)=>{
+        if(!p) return;
+        const len = p.getTotalLength();
+        p.style.strokeDasharray = len;
+        p.style.strokeDashoffset = len;
+        p.style.transition = `stroke-dashoffset ${2.0 + i*0.35}s cubic-bezier(0.2, 0.7, 0.2, 1) ${i*0.15}s`;
+        // force reflow then animate
+        requestAnimationFrame(()=>{
+          p.style.strokeDashoffset = 0;
+        });
+      });
+      io.unobserve(e.target);
+    });
+  },{threshold:0.3});
+  const fig = document.querySelector('.strand-figure');
+  if(fig) io.observe(fig);
+})();
+
+/* ===== SALON FLOOR PLAN ===== */
+(function(){
+  const stores = [
+    {n:'Phoenix MarketCity',     rev:'₹49.9M', share:'17.7%', tag:'Flagship',     tagClass:'',    note:'Anchor mall · top revenue contributor'},
+    {n:'Phoenix Mall of Asia',   rev:'₹46.2M', share:'16.3%', tag:'Flagship',     tagClass:'',    note:'Second anchor · paired with MarketCity'},
+    {n:'Indiranagar',            rev:'₹28.4M', share:'10.0%', tag:'Top 5',        tagClass:'',    note:'Premium high-street footfall'},
+    {n:'UB City',                rev:'₹22.1M', share:'7.8%',  tag:'Top 5',        tagClass:'',    note:'Affluent CBD location'},
+    {n:'Whitefield',             rev:'₹18.6M', share:'6.6%',  tag:'Top 5',        tagClass:'',    note:'IT corridor · high-frequency clients'},
+    {n:'Koramangala 4th Block',  rev:'₹14.2M', share:'5.0%',  tag:'New · 0→298 in 9m', tagClass:'new', note:'Cold-start ramp · same formula'},
+    {n:'Vega City',              rev:'₹11.8M', share:'4.2%',  tag:'New · 321 in 4m',   tagClass:'new', note:'Fastest ramp in network'},
+    {n:'HSR Layout',             rev:'₹10.4M', share:'3.7%',  tag:'Ramping',      tagClass:'new', note:'Young professional cohort'},
+    {n:'Jayanagar',              rev:'₹9.8M',  share:'3.5%',  tag:'Ramping',      tagClass:'new', note:'Mature catchment'},
+    {n:'JP Nagar',               rev:'₹9.1M',  share:'3.2%',  tag:'Ramping',      tagClass:'new', note:'South Bengaluru anchor'},
+    {n:'Bannerghatta',           rev:'₹8.7M',  share:'3.1%',  tag:'Ramping',      tagClass:'new', note:'New growth pocket'},
+    {n:'Marathahalli',           rev:'₹8.2M',  share:'2.9%',  tag:'Ramping',      tagClass:'new', note:'IT-belt convenience'},
+    {n:'Sarjapur Road',          rev:'₹7.9M',  share:'2.8%',  tag:'Ramping',      tagClass:'new', note:'Outer-ring premium'},
+    {n:'Hebbal',                 rev:'₹7.4M',  share:'2.6%',  tag:'Ramping',      tagClass:'new', note:'North Bengaluru'},
+    {n:'Electronic City',        rev:'₹6.9M',  share:'2.4%',  tag:'Ramping',      tagClass:'new', note:'Corporate clientele'},
+    {n:'Yelahanka',              rev:'₹5.0M',  share:'1.8%',  tag:'Newest',       tagClass:'new', note:'Latest opening · early ramp'},
+  ];
+
+  const svg = document.getElementById('floorSvg');
+  const g = document.getElementById('stationsGroup');
+  if(!svg || !g) return;
+
+  // Layout: 2 rows × 8 columns, chairs facing the mirror on their side
+  const xPositions = [80, 145, 210, 275, 340, 405, 470, 535];
+  const topY = 110;     // chairs facing NORTH mirror
+  const botY = 370;     // chairs facing SOUTH mirror
+  const SVGNS = 'http://www.w3.org/2000/svg';
+
+  function buildChair(cx, cy, idx, isTop5, facing){
+    const g = document.createElementNS(SVGNS,'g');
+    g.setAttribute('class','station');
+    g.setAttribute('data-i', idx);
+    g.style.cursor = 'pointer';
+
+    // Seat (round chair seat from above)
+    const seat = document.createElementNS(SVGNS,'circle');
+    seat.setAttribute('cx', cx);
+    seat.setAttribute('cy', cy);
+    seat.setAttribute('r', 13);
+    seat.setAttribute('fill', isTop5 ? 'rgba(232,199,122,0.22)' : 'rgba(201,163,91,0.08)');
+    seat.setAttribute('stroke','#C9A35B');
+    seat.setAttribute('stroke-width','1.0');
+    seat.setAttribute('stroke-opacity', isTop5 ? '0.95' : '0.55');
+    seat.style.transition = 'all 0.25s ease';
+
+    // Backrest — curved bump on the side AWAY from the mirror the chair faces
+    // facing north → backrest on the south (bottom) side; facing south → on north (top)
+    const back = document.createElementNS(SVGNS,'path');
+    if(facing === 'north'){
+      back.setAttribute('d', `M ${cx-10} ${cy+9} Q ${cx} ${cy+22} ${cx+10} ${cy+9}`);
+    } else {
+      back.setAttribute('d', `M ${cx-10} ${cy-9} Q ${cx} ${cy-22} ${cx+10} ${cy-9}`);
+    }
+    back.setAttribute('fill', isTop5 ? 'rgba(232,199,122,0.18)' : 'rgba(201,163,91,0.10)');
+    back.setAttribute('stroke','#C9A35B');
+    back.setAttribute('stroke-width','1.0');
+    back.setAttribute('stroke-opacity', isTop5 ? '0.9' : '0.55');
+    back.setAttribute('stroke-linejoin','round');
+    back.style.transition = 'all 0.25s ease';
+
+    // Hydraulic / centre marker (small dot)
+    const ctr = document.createElementNS(SVGNS,'circle');
+    ctr.setAttribute('cx', cx);
+    ctr.setAttribute('cy', cy);
+    ctr.setAttribute('r', 2);
+    ctr.setAttribute('fill','#C9A35B');
+    ctr.setAttribute('fill-opacity', isTop5 ? '0.9' : '0.5');
+
+    // Station number — placed just above (north chairs) or below (south chairs) the chair
+    const txt = document.createElementNS(SVGNS,'text');
+    txt.setAttribute('x', cx);
+    txt.setAttribute('y', facing === 'north' ? cy - 18 : cy + 27);
+    txt.setAttribute('text-anchor','middle');
+    txt.setAttribute('font-family','JetBrains Mono');
+    txt.setAttribute('font-size','8.5');
+    txt.setAttribute('fill', isTop5 ? '#E8C77A' : '#C9A35B');
+    txt.setAttribute('letter-spacing','1.2');
+    txt.textContent = String(idx+1).padStart(2,'0');
+
+    g.appendChild(back);
+    g.appendChild(seat);
+    g.appendChild(ctr);
+    g.appendChild(txt);
+
+    g.addEventListener('mouseenter', ()=>{
+      seat.setAttribute('fill','rgba(232,199,122,0.4)');
+      seat.setAttribute('stroke-opacity','1');
+      back.setAttribute('stroke-opacity','1');
+    });
+    g.addEventListener('mouseleave', ()=>{
+      seat.setAttribute('fill', isTop5 ? 'rgba(232,199,122,0.22)' : 'rgba(201,163,91,0.08)');
+      seat.setAttribute('stroke-opacity', isTop5 ? '0.95' : '0.55');
+      back.setAttribute('stroke-opacity', isTop5 ? '0.9' : '0.55');
+    });
+    g.addEventListener('click', ()=>{
+      updateDetail(idx);
+      seat.animate(
+        [{transform:'scale(1)'},{transform:'scale(1.18)'},{transform:'scale(1)'}],
+        {duration:420, easing:'ease-out', transformOrigin:`${cx}px ${cy}px`}
+      );
+    });
+
+    return g;
+  }
+
+  // Build all 16 chairs — top row (chairs 1–8) face north mirror, bottom row (9–16) face south
+  stores.forEach((store, i)=>{
+    const isTopRow = i < 8;
+    const cx = xPositions[i % 8];
+    const cy = isTopRow ? topY : botY;
+    const facing = isTopRow ? 'north' : 'south';
+    const isTop5 = i < 5;  // first 5 by revenue are flagships/top-5
+    g.appendChild(buildChair(cx, cy, i, isTop5, facing));
+  });
+
+  function updateDetail(i){
+    const s = stores[i];
+    const card = document.getElementById('stationDetail');
+    card.innerHTML = `
+      <div class="sd-head">
+        <div>
+          <div class="sd-num mono">CHAIR ${String(i+1).padStart(2,'0')} · ${s.tag.toUpperCase()}</div>
+          <div class="sd-name">${s.n}</div>
+        </div>
+      </div>
+      <div class="sd-rev">${s.rev}</div>
+      <div class="sd-meta">${s.share} of network revenue · ${s.note}</div>
+      <span class="sd-tag ${s.tagClass}">${s.tag}</span>
+    `;
+    card.classList.add('active');
+    setTimeout(()=>card.classList.remove('active'), 600);
+  }
+})();
+
+/* ===== HERO COUNTER ANIMATIONS (gentle) ===== */
+(function(){
+  // optional — fade the hero numbers in on load
+  const hkpis = document.querySelectorAll('.hkpi .v');
+  hkpis.forEach((el,i)=>{
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(8px)';
+    el.style.transition = `opacity 0.7s ease ${0.2 + i*0.08}s, transform 0.7s ease ${0.2 + i*0.08}s`;
+    requestAnimationFrame(()=>{
+      el.style.opacity = '';
+      el.style.transform = '';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
