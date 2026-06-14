@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TONI&amp;GUY · Growth Ecosystem — Studio Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Mono:wght@300;400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#080808;
+  --void2:#111010;
+  --void3:#1a1818;
+  --gold:#D4A853;
+  --gold2:#8A6B2A;
+  --gold3:#F0C878;
+  --steel:#8A8A8A;
+  --white:#F5F0E8;
+  --red:#D4453A;
+  --line:rgba(245,240,232,0.07);
+  --line2:rgba(212,168,83,0.15);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--void);color:var(--white);font-family:'Inter',sans-serif;overflow-x:hidden;}
+.serif{font-family:'Playfair Display',Georgia,serif;}
+.mono{font-family:'DM Mono',monospace;letter-spacing:0.06em;}
+
+/* PROGRESS BAR */
+#scrollBar{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--gold2),var(--gold));
+  z-index:200;transition:width 0.1s linear;
+}
+
+/* TOP NAV */
+#topNav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1.4rem clamp(2rem,6vw,5rem);
+  display:flex;justify-content:space-between;align-items:center;
+  border-bottom:1px solid transparent;
+  transition:background 0.4s, border-color 0.4s;
+}
+#topNav.scrolled{
+  background:rgba(8,8,8,0.94);
+  border-bottom-color:var(--line);
+  backdrop-filter:blur(12px);
+}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;letter-spacing:0.08em;}
+.nav-brand em{color:var(--gold);font-style:normal;}
+.nav-links{display:flex;gap:2.5rem;align-items:center;}
+.nav-links a{
+  font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.2em;
+  text-transform:uppercase;color:var(--white);opacity:0.45;text-decoration:none;
+  transition:opacity 0.25s;
+}
+.nav-links a:hover{opacity:1;}
+
+/* HERO */
+#hero{
+  position:relative;height:100vh;width:100%;overflow:hidden;
+}
+#heroCanvas{position:absolute;inset:0;display:block;width:100%;height:100%;}
+.hero-ui{
+  position:absolute;inset:0;z-index:2;
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:clamp(5rem,10vh,7rem) clamp(2rem,6vw,5rem) clamp(2.5rem,5vh,4rem);
+  pointer-events:none;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.28em;
+  color:var(--gold);text-transform:uppercase;margin-bottom:1.6rem;opacity:0.8;
+}
+.hero-h1{
+  font-family:'Playfair Display',serif;font-weight:700;
+  font-size:clamp(3rem,8.5vw,6.8rem);line-height:1.0;
+}
+.hero-h1 em{color:var(--gold);font-style:italic;font-weight:400;}
+.hero-tag{
+  margin-top:1.8rem;font-size:1rem;line-height:1.7;
+  opacity:0.55;font-weight:300;max-width:600px;
+}
+.hero-tag strong{color:var(--white);font-weight:400;opacity:1;}
+.hero-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  flex-wrap:wrap;gap:2rem;
+}
+.hero-kpis{display:flex;gap:3rem;flex-wrap:wrap;}
+.kpi .n{
+  font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);
+  color:var(--gold);line-height:1;
+}
+.kpi.pos .n{color:var(--gold);}
+.kpi.neg .n{color:#5fa8a0;}
+.kpi .l{font-size:0.62rem;opacity:0.4;letter-spacing:0.16em;text-transform:uppercase;margin-top:0.5rem;}
+.scroll-hint{
+  font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.22em;
+  text-transform:uppercase;opacity:0.35;display:flex;align-items:center;gap:0.7rem;
+}
+.sh-bar{width:1px;height:36px;background:var(--gold);animation:shp 2.2s ease-in-out infinite;}
+@keyframes shp{0%,100%{opacity:0.12;transform:scaleY(0.3);transform-origin:top;}60%{opacity:0.8;transform:scaleY(1);}}
+
+/* COUNTER STATS */
+#statsRow{
+  display:grid;grid-template-columns:repeat(6,1fr);gap:1px;
+  background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+}
+.stat-cell{
+  background:var(--void);padding:2rem 1.8rem;
+  display:flex;flex-direction:column;gap:0.6rem;
+}
+.sc-n{
+  font-family:'Playfair Display',serif;font-size:clamp(1.4rem,2.5vw,2.2rem);
+  color:var(--gold);line-height:1;
+}
+.sc-l{font-family:'DM Mono',monospace;font-size:0.6rem;opacity:0.38;letter-spacing:0.15em;text-transform:uppercase;}
+.sc-d{font-size:0.8rem;opacity:0.5;font-weight:300;}
+
+/* SECTIONS */
+.section{
+  padding:clamp(4rem,10vh,8rem) clamp(2rem,6vw,5rem);
+  max-width:1380px;margin:0 auto;
+  border-bottom:1px solid var(--line);
+  position:relative;
+}
+.sec-head{
+  display:flex;justify-content:space-between;align-items:baseline;
+  gap:2rem;margin-bottom:4rem;flex-wrap:wrap;
+}
+.chapter{
+  font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);
+  letter-spacing:0.24em;margin-bottom:0.9rem;text-transform:uppercase;
+}
+.sec-title{
+  font-family:'Playfair Display',serif;font-weight:500;
+  font-size:clamp(2rem,4.5vw,3.4rem);line-height:1.08;max-width:820px;
+}
+.sec-title em{color:var(--gold);font-style:italic;font-weight:400;}
+.sec-tag{font-family:'DM Mono',monospace;font-size:0.62rem;opacity:0.32;letter-spacing:0.16em;text-transform:uppercase;white-space:nowrap;}
+
+/* BODY */
+.body{font-size:0.95rem;line-height:1.78;opacity:0.6;font-weight:300;}
+.body strong{color:var(--white);font-weight:400;opacity:1;}
+
+/* CHALLENGE CARDS */
+.challenge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);}
+.ch-card{background:var(--void);padding:2.4rem;transition:background 0.35s;position:relative;overflow:hidden;}
+.ch-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1.5px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;
+  transition:transform 0.4s;
+}
+.ch-card:hover{background:var(--void2);}
+.ch-card:hover::after{transform:scaleX(1);}
+.ch-n{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.18em;margin-bottom:1rem;}
+.ch-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:500;margin-bottom:0.8rem;}
+.ch-body{font-size:0.86rem;line-height:1.65;opacity:0.55;font-weight:300;}
+
+/* PILLAR HEX ECOSYSTEM */
+.ecosystem-wrap{
+  display:grid;grid-template-columns:1fr 1.2fr;gap:5rem;align-items:center;
+}
+.pillar-list{display:flex;flex-direction:column;gap:0;}
+.pl-item{
+  padding:1.5rem 0;border-bottom:1px solid var(--line);
+  cursor:pointer;transition:padding-left 0.3s;position:relative;
+}
+.pl-item::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:0;
+  background:var(--gold);transition:width 0.3s;
+}
+.pl-item:hover::before,.pl-item.active::before{width:2px;}
+.pl-item:hover,.pl-item.active{padding-left:1rem;}
+.pl-n{font-family:'DM Mono',monospace;font-size:0.62rem;color:var(--gold);letter-spacing:0.16em;margin-bottom:0.4rem;}
+.pl-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:500;}
+.pl-body{font-size:0.85rem;opacity:0.5;margin-top:0.45rem;max-height:0;overflow:hidden;transition:max-height 0.45s;}
+.pl-item.active .pl-body{max-height:100px;}
+
+/* HEX SVG container */
+#hexSvg{width:100%;max-width:400px;margin:0 auto;display:block;}
+
+/* JOURNEY FLYWHEEL */
+#flywheelCanvas{width:100%;height:460px;display:block;cursor:grab;}
+#flywheelCanvas:active{cursor:grabbing;}
+.flywheel-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+.flywheel-stages{display:flex;flex-direction:column;gap:1.2rem;}
+.fw-stage{
+  display:flex;align-items:flex-start;gap:1.2rem;
+  padding:1.2rem;border:1px solid var(--line);
+  transition:background 0.3s, border-color 0.3s;cursor:pointer;
+}
+.fw-stage.active,.fw-stage:hover{
+  background:rgba(212,168,83,0.05);
+  border-color:var(--gold2);
+}
+.fw-stage-n{
+  font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--gold);
+  line-height:1;margin-top:0.15rem;min-width:1.5rem;
+}
+.fw-stage-info{}
+.fw-stage-title{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:500;}
+.fw-stage-body{font-size:0.83rem;opacity:0.5;margin-top:0.35rem;line-height:1.55;font-weight:300;}
+
+/* PROOF CHARTS */
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);}
+.proof-cell{background:var(--void);padding:2.5rem;}
+.pc-label{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.18em;margin-bottom:0.8rem;}
+.pc-headline{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:500;line-height:1;margin-bottom:0.4rem;}
+.pc-headline.pos{color:var(--gold);}
+.pc-headline.neg{color:#5fa8a0;}
+.pc-sub{font-size:0.8rem;opacity:0.45;margin-bottom:1.2rem;}
+#proofCanvas1,#proofCanvas2,#proofCanvas3{
+  width:100%;height:120px;display:block;
+  border-top:1px solid var(--line2);margin-top:0.8rem;
+}
+
+/* STORE CONSTELLATION */
+.constellation-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;
+}
+#constellationCanvas{width:100%;height:480px;display:block;cursor:grab;}
+#constellationCanvas:active{cursor:grabbing;}
+.store-table{display:flex;flex-direction:column;gap:0;}
+.st-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0.9rem 0;border-bottom:1px solid var(--line);
+  font-size:0.86rem;
+}
+.st-row:hover{background:rgba(212,168,83,0.04);padding-left:0.5rem;padding-right:0.5rem;transition:all 0.2s;}
+.st-name{opacity:0.75;}
+.st-rev{font-family:'DM Mono',monospace;font-size:0.8rem;color:var(--gold);letter-spacing:0.05em;}
+.st-badge{
+  font-family:'DM Mono',monospace;font-size:0.55rem;letter-spacing:0.12em;
+  padding:0.2rem 0.5rem;text-transform:uppercase;
+}
+.st-badge.top{border:1px solid var(--gold2);color:var(--gold);}
+.st-badge.new{border:1px solid rgba(255,255,255,0.15);color:var(--steel);}
+
+/* KPIs */
+.kpi-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line);
+  margin-bottom:2px;
+}
+.kpi-card{background:var(--void);padding:2rem 1.8rem;}
+.kpi-card:hover{background:var(--void2);}
+.kpi-n{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);line-height:1;}
+.kpi-n.pos{color:var(--gold);}
+.kpi-n.neg{color:#5fa8a0;}
+.kpi-l{font-family:'DM Mono',monospace;font-size:0.6rem;opacity:0.35;letter-spacing:0.15em;text-transform:uppercase;margin-top:0.6rem;}
+.kpi-d{font-size:0.8rem;opacity:0.5;margin-top:0.5rem;}
+
+/* LEARNINGS */
+.learnings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);}
+.learn-card{background:var(--void);padding:2.8rem;}
+.learn-card:hover{background:var(--void2);}
+.lc-n{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--gold);letter-spacing:0.18em;margin-bottom:1rem;}
+.lc-title{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:500;margin-bottom:0.8rem;}
+.lc-body{font-size:0.9rem;line-height:1.7;opacity:0.58;font-weight:300;}
+
+/* QUOTE */
+.quote-bar{
+  padding:4rem clamp(2rem,6vw,5rem);
+  background:linear-gradient(135deg, rgba(212,168,83,0.05), transparent);
+  border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);
+}
+.quote-text{
+  font-family:'Playfair Display',serif;font-size:clamp(1.3rem,2.5vw,1.9rem);
+  font-style:italic;font-weight:400;line-height:1.5;max-width:900px;
+  margin:0 auto;text-align:center;color:var(--white);opacity:0.75;
+}
+.quote-text em{color:var(--gold);font-style:italic;}
+
+/* CTA */
+.cta-section{
+  padding:5rem clamp(2rem,6vw,5rem);text-align:center;
+}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:0.6rem;}
+.cta-title em{color:var(--gold);font-style:italic;}
+.cta-sub{font-size:0.95rem;opacity:0.5;margin-bottom:2.5rem;font-weight:300;}
+.cta-row{display:flex;justify-content:center;gap:1.2rem;flex-wrap:wrap;}
+.cta-btn{
+  padding:0.85rem 2.2rem;font-family:'DM Mono',monospace;font-size:0.7rem;
+  letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;
+  border:1px solid var(--gold2);color:var(--gold);background:transparent;
+  cursor:pointer;transition:all 0.3s;
+}
+.cta-btn:hover{background:var(--gold);color:var(--void);}
+.cta-btn.primary{background:var(--gold);color:var(--void);border-color:var(--gold);}
+.cta-btn.primary:hover{background:var(--gold3);border-color:var(--gold3);}
+
+/* FOOTER */
+footer{
+  padding:4rem clamp(2rem,6vw,5rem);
+  border-top:1px solid var(--line);
+  text-align:center;
+}
+.ft-name{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;}
+.ft-role{font-size:0.7rem;opacity:0.35;letter-spacing:0.18em;text-transform:uppercase;margin-top:0.6rem;}
+.ft-links{display:flex;justify-content:center;gap:2rem;margin-top:1.5rem;flex-wrap:wrap;}
+.ft-links a{color:var(--gold);opacity:0.6;text-decoration:none;font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.18em;transition:opacity 0.2s;}
+.ft-links a:hover{opacity:1;}
+.ft-legal{font-size:0.65rem;opacity:0.2;margin-top:2rem;font-family:'DM Mono',monospace;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.85s ease,transform 0.85s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+@media(max-width:1000px){
+  .ecosystem-wrap,.flywheel-wrap,.constellation-wrap{grid-template-columns:1fr;gap:2.5rem;}
+  .challenge-grid,.proof-grid,.kpi-row,.learnings-grid{grid-template-columns:1fr 1fr;}
+  #statsRow{grid-template-columns:repeat(3,1fr);}
+  .nav-links{display:none;}
+  #constellationCanvas{height:320px;}
+  #flywheelCanvas{height:320px;}
+}
+@media(max-width:600px){
+  .challenge-grid,.proof-grid,.kpi-row,.learnings-grid{grid-template-columns:1fr;}
+  #statsRow{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<div id="scrollBar"></div>
+
+<nav id="topNav">
+  <div class="nav-brand">TONI<em>&amp;</em>GUY <span style="opacity:0.35;margin:0 0.5rem">·</span> <span style="font-size:0.85rem;font-weight:400;opacity:0.6">Studio Ledger</span></div>
+  <div class="nav-links">
+    <a href="#sec-challenge">Challenge</a>
+    <a href="#sec-ecosystem">Ecosystem</a>
+    <a href="#sec-proof">Proof</a>
+    <a href="#sec-stores">Stores</a>
+    <a href="#sec-learn">Learnings</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-ui">
+    <div>
+      <div class="hero-eyebrow">Client Engagement · A Global Hairdressing House · 2025–2026</div>
+      <h1 class="hero-h1">One brand.<br>Sixteen stores.<br><em>One growth engine.</em></h1>
+      <p class="hero-tag">How <strong>TONI&amp;GUY</strong>'s 16-store India network became a unified growth ecosystem — driving 26.9M impressions, 173K conversions, and a 67% cut in cost-per-click.</p>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-kpis">
+        <div class="kpi pos"><div class="n">26.9M</div><div class="l">Total Impressions</div></div>
+        <div class="kpi pos"><div class="n">173K</div><div class="l">Conversions</div></div>
+        <div class="kpi pos"><div class="n">276%</div><div class="l">CTR Lift</div></div>
+        <div class="kpi neg"><div class="n">−67%</div><div class="l">CPC Reduction</div></div>
+        <div class="kpi pos"><div class="n">₹369M</div><div class="l">Revenue Attributed</div></div>
+      </div>
+      <div class="scroll-hint"><div class="sh-bar"></div>Scroll to explore</div>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTER ROW -->
+<div id="statsRow">
+  <div class="stat-cell">
+    <div class="sc-n" data-target="26900000" data-fmt="compact">0</div>
+    <div class="sc-l">Total Impressions</div>
+    <div class="sc-d">Across Google &amp; Meta</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-n" data-target="475000" data-fmt="compact">0</div>
+    <div class="sc-l">Clicks</div>
+    <div class="sc-d">16-month engagement</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-n" data-target="173000" data-fmt="compact">0</div>
+    <div class="sc-l">Conversions</div>
+    <div class="sc-d">Form fills &amp; bookings</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-n" data-prefix="−" data-target="67" data-fmt="pct" data-color="teal">0</div>
+    <div class="sc-l">CPC Reduction</div>
+    <div class="sc-d">₹14+ → ₹4.60 avg</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-n" data-prefix="+" data-target="276" data-fmt="pct">0</div>
+    <div class="sc-l">CTR Lift</div>
+    <div class="sc-d">~1% → 3.8% avg</div>
+  </div>
+  <div class="stat-cell">
+    <div class="sc-n" data-prefix="₹" data-target="369" data-fmt="plain">0</div>
+    <div class="sc-l">Revenue (M)</div>
+    <div class="sc-d">Full network, 16 months</div>
+  </div>
+</div>
+
+<!-- CHALLENGE -->
+<section class="section reveal" id="sec-challenge">
+  <div class="sec-head">
+    <div>
+      <div class="chapter">The Challenge</div>
+      <h2 class="sec-title">A leaky bucket across <em>16 stores</em>.</h2>
+    </div>
+    <div class="sec-tag">state before intervention</div>
+  </div>
+  <div class="challenge-grid">
+    <div class="ch-card">
+      <div class="ch-n mono">01</div>
+      <h3 class="ch-title">Fragmented execution.</h3>
+      <p class="ch-body">No central playbook. Each store improvised its own marketing in isolation, creating inconsistent messaging and wasted spend with no network-level learning.</p>
+    </div>
+    <div class="ch-card">
+      <div class="ch-n mono">02</div>
+      <h3 class="ch-title">Poor creative-audience fit.</h3>
+      <p class="ch-body">CPC at ₹14+. CTR near 1%. Low quality scores punished every auction. Generic creative served to generic audiences produced generic, expensive results.</p>
+    </div>
+    <div class="ch-card">
+      <div class="ch-n mono">03</div>
+      <h3 class="ch-title">No CRM infrastructure.</h3>
+      <p class="ch-body">Customer data scattered across booking sheets and WhatsApp threads. No unified view. No segmentation. No way to identify high-value customers or act on behaviour.</p>
+    </div>
+    <div class="ch-card">
+      <div class="ch-n mono">04</div>
+      <h3 class="ch-title">27% customer churn.</h3>
+      <p class="ch-body">Customers vanished after one visit. No lifecycle, no re-engagement, no loyalty architecture. The acquisition machine was filling a bucket with a hole in the bottom.</p>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGY: ECOSYSTEM -->
+<section class="section reveal" id="sec-ecosystem">
+  <div class="sec-head">
+    <div>
+      <div class="chapter">The Strategy</div>
+      <h2 class="sec-title">The <em>Growth Ecosystem</em>.</h2>
+    </div>
+    <div class="sec-tag">six interlocked pillars</div>
+  </div>
+  <div class="ecosystem-wrap">
+    <div class="pillar-list">
+      <div class="pl-item active" data-pi="0">
+        <div class="pl-n mono">PILLAR 01 · ACQUIRE</div>
+        <h4 class="pl-title">Google Ads, PMax &amp; Meta.</h4>
+        <p class="pl-body">112+ creatives tested. Store-level targeting with postcode precision. PMax campaigns for booking intent; Meta for awareness and retargeting at location level.</p>
+      </div>
+      <div class="pl-item" data-pi="1">
+        <div class="pl-n mono">PILLAR 02 · EXPERIENCE</div>
+        <h4 class="pl-title">Website CRO &amp; booking funnel.</h4>
+        <p class="pl-body">Mobile app optimisation, booking funnel A/B testing, landing page restructure per store. Every conversion point pressure-tested against the data.</p>
+      </div>
+      <div class="pl-item" data-pi="2">
+        <div class="pl-n mono">PILLAR 03 · CONTENT &amp; BRAND</div>
+        <h4 class="pl-title">100+ monthly assets.</h4>
+        <p class="pl-body">Influencer programme, PR pipeline, Google Review reputation management across 16 listings. Brand consistency enforced at every customer touchpoint.</p>
+      </div>
+      <div class="pl-item" data-pi="3">
+        <div class="pl-n mono">PILLAR 04 · ENGAGE &amp; RETAIN</div>
+        <h4 class="pl-title">WhatsApp, email, push, loyalty.</h4>
+        <p class="pl-body">Churn reduced from 27% → 7%. Win-back flows, birthday triggers, tier-based loyalty mechanics. Re-engagement sequences tied to visit recency and service history.</p>
+      </div>
+      <div class="pl-item" data-pi="4">
+        <div class="pl-n mono">PILLAR 05 · CUSTOMER DATA</div>
+        <h4 class="pl-title">HubSpot / Zoho CRM.</h4>
+        <p class="pl-body">Segmentation by service type, visit frequency, location, spend. Lead scoring for salon upgrade journeys. First unified customer record across 16 stores.</p>
+      </div>
+      <div class="pl-item" data-pi="5">
+        <div class="pl-n mono">PILLAR 06 · MEASURE</div>
+        <h4 class="pl-title">GA4, GTM &amp; Looker Studio.</h4>
+        <p class="pl-body">ROAS, CPA, CPL measured per store. Custom Looker Studio dashboards. Weekly performance briefs with anomaly detection. Every channel justified by its own P&L.</p>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:1.5rem;">
+      <svg id="hexSvg" viewBox="0 0 400 380" xmlns="http://www.w3.org/2000/svg">
+        <!-- Central hexagon -->
+        <polygon id="hexCenter" points="200,160 240,182 240,228 200,250 160,228 160,182"
+          fill="rgba(212,168,83,0.12)" stroke="#D4A853" stroke-width="1.5"/>
+        <text x="200" y="205" text-anchor="middle" font-family="'Playfair Display',serif" font-size="14" fill="#D4A853" font-weight="500">T&amp;G</text>
+        <text x="200" y="222" text-anchor="middle" font-family="'DM Mono',monospace" font-size="9" fill="rgba(245,240,232,0.5)" letter-spacing="0.15em">GROWTH ENGINE</text>
+        <!-- Spoke lines -->
+        <line x1="200" y1="160" x2="200" y2="95" stroke="#D4A853" stroke-width="0.5" opacity="0.3"/>
+        <line x1="240" y1="182" x2="310" y2="130" stroke="#D4A853" stroke-width="0.5" opacity="0.3"/>
+        <line x1="240" y1="228" x2="310" y2="280" stroke="#D4A853" stroke-width="0.5" opacity="0.3"/>
+        <line x1="200" y1="250" x2="200" y2="315" stroke="#D4A853" stroke-width="0.5" opacity="0.3"/>
+        <line x1="160" y1="228" x2="90" y2="280" stroke="#D4A853" stroke-width="0.5" opacity="0.3"/>
+        <line x1="160" y1="182" x2="90" y2="130" stroke="#D4A853" stroke-width="0.5" opacity="0.3"/>
+        <!-- Satellite hexagons -->
+        <!-- Top: Acquire -->
+        <polygon id="hex0" class="hex-sat" points="200,52 224,65 224,91 200,104 176,91 176,65"
+          fill="rgba(212,168,83,0.1)" stroke="rgba(212,168,83,0.4)" stroke-width="1" style="cursor:pointer;transition:all 0.3s;"/>
+        <text x="200" y="77" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="#D4A853" letter-spacing="0.12em">ACQUIRE</text>
+        <!-- Top-right: Experience -->
+        <polygon id="hex1" class="hex-sat" points="320,100 344,113 344,139 320,152 296,139 296,113"
+          fill="rgba(212,168,83,0.1)" stroke="rgba(212,168,83,0.4)" stroke-width="1" style="cursor:pointer;transition:all 0.3s;"/>
+        <text x="320" y="124" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="#D4A853" letter-spacing="0.1em">EXPERIENCE</text>
+        <!-- Bottom-right: Content -->
+        <polygon id="hex2" class="hex-sat" points="320,256 344,269 344,295 320,308 296,295 296,269"
+          fill="rgba(212,168,83,0.1)" stroke="rgba(212,168,83,0.4)" stroke-width="1" style="cursor:pointer;transition:all 0.3s;"/>
+        <text x="320" y="280" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="#D4A853" letter-spacing="0.1em">CONTENT</text>
+        <!-- Bottom: Retain -->
+        <polygon id="hex3" class="hex-sat" points="200,274 224,287 224,313 200,326 176,313 176,287"
+          fill="rgba(212,168,83,0.1)" stroke="rgba(212,168,83,0.4)" stroke-width="1" style="cursor:pointer;transition:all 0.3s;"/>
+        <text x="200" y="298" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="#D4A853" letter-spacing="0.1em">RETAIN</text>
+        <!-- Bottom-left: Data -->
+        <polygon id="hex4" class="hex-sat" points="80,256 104,269 104,295 80,308 56,295 56,269"
+          fill="rgba(212,168,83,0.1)" stroke="rgba(212,168,83,0.4)" stroke-width="1" style="cursor:pointer;transition:all 0.3s;"/>
+        <text x="80" y="280" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="#D4A853" letter-spacing="0.12em">DATA</text>
+        <!-- Top-left: Measure -->
+        <polygon id="hex5" class="hex-sat" points="80,100 104,113 104,139 80,152 56,139 56,113"
+          fill="rgba(212,168,83,0.1)" stroke="rgba(212,168,83,0.4)" stroke-width="1" style="cursor:pointer;transition:all 0.3s;"/>
+        <text x="80" y="124" text-anchor="middle" font-family="'DM Mono',monospace" font-size="7" fill="#D4A853" letter-spacing="0.12em">MEASURE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- FLYWHEEL -->
+<section class="section reveal" id="sec-flywheel">
+  <div class="sec-head">
+    <div>
+      <div class="chapter">The Customer Journey</div>
+      <h2 class="sec-title">A self-reinforcing <em>flywheel</em>.</h2>
+    </div>
+    <div class="sec-tag">advocates feed back into discovery</div>
+  </div>
+  <div class="flywheel-wrap">
+    <canvas id="flywheelCanvas"></canvas>
+    <div class="flywheel-stages" id="fwStages">
+      <div class="fw-stage active" data-fw="0">
+        <div class="fw-stage-n mono">01</div>
+        <div class="fw-stage-info"><div class="fw-stage-title">Discover</div><p class="fw-stage-body">Google Search, Meta Ads, organic social, influencer reach — the first moment a potential client finds TONI&amp;GUY across 16 Bengaluru locations.</p></div>
+      </div>
+      <div class="fw-stage" data-fw="1">
+        <div class="fw-stage-n mono">02</div>
+        <div class="fw-stage-info"><div class="fw-stage-title">Consider</div><p class="fw-stage-body">Website, Google Reviews, retargeting sequences. Quality score signals trust. Booking page CRO converts intent to action.</p></div>
+      </div>
+      <div class="fw-stage" data-fw="2">
+        <div class="fw-stage-n mono">03</div>
+        <div class="fw-stage-info"><div class="fw-stage-title">Book</div><p class="fw-stage-body">Optimised booking funnel. WhatsApp confirmation flow. Pre-visit preparation. Every friction point mapped and removed.</p></div>
+      </div>
+      <div class="fw-stage" data-fw="3">
+        <div class="fw-stage-n mono">04</div>
+        <div class="fw-stage-info"><div class="fw-stage-title">Experience</div><p class="fw-stage-body">In-salon service. Post-visit NPS capture. Review request at peak satisfaction. The experience sets up every downstream conversion.</p></div>
+      </div>
+      <div class="fw-stage" data-fw="4">
+        <div class="fw-stage-n mono">05</div>
+        <div class="fw-stage-info"><div class="fw-stage-title">Return</div><p class="fw-stage-body">Churn dropped 27% → 7%. Triggered re-engagement at 30 and 60-day intervals. Loyalty tier mechanics reward high-frequency visits.</p></div>
+      </div>
+      <div class="fw-stage" data-fw="5">
+        <div class="fw-stage-n mono">06</div>
+        <div class="fw-stage-info"><div class="fw-stage-title">Advocate</div><p class="fw-stage-body">Referral mechanics, review amplification, UGC programme. Advocates re-enter the Discover stage as organic brand signals — growth compounding without paid spend.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="section reveal" id="sec-proof">
+  <div class="sec-head">
+    <div>
+      <div class="chapter">The Proof</div>
+      <h2 class="sec-title">16 months of <em>compounding growth</em>.</h2>
+    </div>
+    <div class="sec-tag">real data · google ads + meta</div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kpi-n pos">+271%</div><div class="kpi-l">Monthly Conversions</div><div class="kpi-d">Start → peak lift</div></div>
+    <div class="kpi-card"><div class="kpi-n neg">−67%</div><div class="kpi-l">Cost Per Click</div><div class="kpi-d">₹14+ → ₹4.60 avg</div></div>
+    <div class="kpi-card"><div class="kpi-n pos">+276%</div><div class="kpi-l">Click-Through Rate</div><div class="kpi-d">~1% → 3.8% avg</div></div>
+    <div class="kpi-card"><div class="kpi-n pos">$0.10</div><div class="kpi-l">Best CPL</div><div class="kpi-d">May 2025 peak month</div></div>
+  </div>
+  <div class="proof-grid" style="margin-top:2px;">
+    <div class="proof-cell">
+      <div class="pc-label mono">MONTHLY CONVERSIONS</div>
+      <div class="pc-headline pos">+271%</div>
+      <div class="pc-sub">Start → peak lift over 16 months</div>
+      <canvas id="proofCanvas1"></canvas>
+    </div>
+    <div class="proof-cell">
+      <div class="pc-label mono">COST PER CLICK (₹)</div>
+      <div class="pc-headline neg">−67%</div>
+      <div class="pc-sub">₹14+ → ₹4.60 average</div>
+      <canvas id="proofCanvas2"></canvas>
+    </div>
+    <div class="proof-cell">
+      <div class="pc-label mono">CLICK-THROUGH RATE (%)</div>
+      <div class="pc-headline pos">+276%</div>
+      <div class="pc-sub">Category benchmark ~1%</div>
+      <canvas id="proofCanvas3"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- STORE CONSTELLATION -->
+<section class="section reveal" id="sec-stores">
+  <div class="sec-head">
+    <div>
+      <div class="chapter">Store-Level Performance</div>
+      <h2 class="sec-title">16 stores, <em>16 P&amp;Ls</em>.</h2>
+    </div>
+    <div class="sec-tag">Mar 2025 – Mar 2026 · drag to rotate</div>
+  </div>
+  <div class="kpi-row">
+    <div class="kpi-card"><div class="kpi-n pos">₹282.6M</div><div class="kpi-l">Network Revenue</div><div class="kpi-d">Mar 2025 – Mar 2026</div></div>
+    <div class="kpi-card"><div class="kpi-n pos">109,645</div><div class="kpi-l">Total Orders</div><div class="kpi-d">Across 16 stores</div></div>
+    <div class="kpi-card"><div class="kpi-n pos">60%</div><div class="kpi-l">From Top 5 Stores</div><div class="kpi-d">Concentration risk mapped</div></div>
+    <div class="kpi-card"><div class="kpi-n pos">₹2,577</div><div class="kpi-l">Network AOV</div><div class="kpi-d">Average order value</div></div>
+  </div>
+  <div class="constellation-wrap" style="margin-top:3rem;">
+    <canvas id="constellationCanvas"></canvas>
+    <div>
+      <p class="body" style="margin-bottom:2rem;">Flagship malls anchor the network. Phoenix MarketCity (₹49.9M) and Phoenix Mall of Asia (₹46.2M) alone drive 34% of revenue. New stores ramped fast — the acquisition playbook transferred cleanly.</p>
+      <div class="store-table">
+        <div class="st-row"><span class="st-name">Phoenix MarketCity</span><span class="st-badge top">FLAGSHIP</span><span class="st-rev">₹49.9M</span></div>
+        <div class="st-row"><span class="st-name">Phoenix Mall of Asia</span><span class="st-badge top">FLAGSHIP</span><span class="st-rev">₹46.2M</span></div>
+        <div class="st-row"><span class="st-name">Indiranagar</span><span class="st-badge top">TOP 5</span><span class="st-rev">₹28.4M</span></div>
+        <div class="st-row"><span class="st-name">UB City</span><span class="st-badge top">TOP 5</span><span class="st-rev">₹22.1M</span></div>
+        <div class="st-row"><span class="st-name">Whitefield</span><span class="st-badge top">TOP 5</span><span class="st-rev">₹18.6M</span></div>
+        <div class="st-row"><span class="st-name">Koramangala 4th Block</span><span class="st-badge new">0→298 in 9m</span><span class="st-rev">₹14.2M</span></div>
+        <div class="st-row"><span class="st-name">Vega City</span><span class="st-badge new">321 in 4m</span><span class="st-rev">₹11.8M</span></div>
+        <div class="st-row" style="opacity:0.5"><span class="st-name">9 further locations…</span><span class="st-badge new">RAMPING</span><span class="st-rev">₹91.4M</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote-bar reveal">
+  <p class="quote-text">"Treating 16 stores as one campaign hides winners and losers. <em>Store-level granularity is where the magic happens.</em>"</p>
+</div>
+
+<!-- LEARNINGS -->
+<section class="section reveal" id="sec-learn">
+  <div class="sec-head">
+    <div>
+      <div class="chapter">Key Learnings</div>
+      <h2 class="sec-title">What I'd tell <em>another marketer</em>.</h2>
+    </div>
+    <div class="sec-tag">distilled from 16 months</div>
+  </div>
+  <div class="learnings-grid">
+    <div class="learn-card">
+      <div class="lc-n mono">01</div>
+      <h3 class="lc-title">Granularity beats averages.</h3>
+      <p class="lc-body">Treating 16 stores as one campaign hides winners and losers. Per-store spend revealed where to refresh creative vs. shift budget. A city-wide average would have hidden that the bottom 8 stores need entirely different creative and budget logic than the flagships.</p>
+    </div>
+    <div class="learn-card">
+      <div class="lc-n mono">02</div>
+      <h3 class="lc-title">CTR leads, CPC follows.</h3>
+      <p class="lc-body">Once creative-audience fit improved (CTR up 5×), CPC collapsed — Google rewards relevance with cheaper auctions. The work was not on bids. It was on understanding which creative, which audience, which offer, at which store, at which moment. Then systematising that understanding across 112+ creatives.</p>
+    </div>
+    <div class="learn-card">
+      <div class="lc-n mono">03</div>
+      <h3 class="lc-title">Retention beats acquisition.</h3>
+      <p class="lc-body">Cutting churn from 27% → 7% was worth more than any single paid optimisation. Every percentage point of retention improvement compounds forward. Lifecycle is leverage. The acquisition engine was filling a bucket with a hole in the bottom; we plugged the hole first.</p>
+    </div>
+    <div class="learn-card">
+      <div class="lc-n mono">04</div>
+      <h3 class="lc-title">CRM is infrastructure, not a tool.</h3>
+      <p class="lc-body">Without centralised data, every channel flies blind. CRM is priority #1 in any multi-location B2C. The HubSpot / Zoho implementation was the unlock for everything else — segmentation, lead scoring, lifecycle automation, attribution, and the weekly executive brief that ran decisions faster.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section reveal">
+  <h2 class="cta-title">Want a system <em>like this</em>?</h2>
+  <p class="cta-sub">Open to performance marketing &amp; growth roles across USA, UK, Europe &amp; Australia.</p>
+  <div class="cta-row">
+    <a href="mailto:danieldeepak3519@gmail.com" class="cta-btn primary">Email Me</a>
+    <a href="https://linkedin.com/in/danny-ai-marketing" class="cta-btn">LinkedIn</a>
+    <a href="https://dannygrowthmarketing.github.io/resume/" class="cta-btn">Full Resume</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-name">Daniel Deepak</div>
+  <div class="ft-role">Senior Performance Marketing · Growth · Analytics · Bangalore, India</div>
+  <div class="ft-links">
+    <a href="https://github.com/dannygrowthmarketing">GitHub</a>
+    <a href="https://linkedin.com/in/danny-ai-marketing">LinkedIn</a>
+    <a href="https://dannygrowthmarketing.com">Portfolio</a>
+  </div>
+  <div class="ft-legal mono">© 2026 Daniel Deepak · TONI&amp;GUY India growth engagement · Performance data shown with figures rounded for portfolio</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ===== SCROLL + NAV ===== */
+(function(){
+  const nav = document.getElementById('topNav');
+  const bar = document.getElementById('scrollBar');
+  window.addEventListener('scroll', ()=>{
+    const prog = scrollY / (document.body.scrollHeight - innerHeight);
+    bar.style.width = (prog*100)+'%';
+    nav.classList.toggle('scrolled', scrollY > 60);
+  });
+})();
+
+/* ===== REVEAL ===== */
+(function(){
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+  },{threshold:0.07});
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ===== COUNTER ANIMATION ===== */
+(function(){
+  const cells = document.querySelectorAll('.sc-n[data-target]');
+  const fmt = (n, type, prefix, color) => {
+    let str = '';
+    if(type==='compact'){
+      if(n>=1e6) str = (n/1e6).toFixed(1)+'M';
+      else if(n>=1e3) str = (n/1e3).toFixed(0)+'K';
+      else str = Math.round(n)+'';
+    } else if(type==='pct'){
+      str = Math.round(n)+'%';
+    } else {
+      str = Math.round(n)+'';
+    }
+    return (prefix||'')+str;
+  };
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      const target = +el.dataset.target;
+      const type = el.dataset.fmt||'plain';
+      const prefix = el.dataset.prefix||'';
+      const color = el.dataset.color;
+      if(color==='teal') el.style.color='#5fa8a0';
+      let start = 0, dur = 1800, last = null;
+      function step(ts){
+        if(!last) last=ts;
+        const p = Math.min((ts-last)/dur, 1);
+        const ease = 1 - Math.pow(1-p, 3);
+        el.textContent = fmt(target*ease, type, prefix, color);
+        if(p<1) requestAnimationFrame(step);
+        else el.textContent = fmt(target, type, prefix, color);
+      }
+      requestAnimationFrame(step);
+      io.unobserve(el);
+    });
+  },{threshold:0.5});
+  cells.forEach(c=>io.observe(c));
+})();
+
+/* ===== PILLAR ITEMS ===== */
+(function(){
+  document.querySelectorAll('.pl-item').forEach(item=>{
+    item.addEventListener('click',()=>{
+      document.querySelectorAll('.pl-item').forEach(i=>i.classList.remove('active'));
+      item.classList.add('active');
+      const pi = item.dataset.pi;
+      document.querySelectorAll('.hex-sat').forEach((h,i)=>{
+        h.style.fill = i==pi ? 'rgba(212,168,83,0.3)' : 'rgba(212,168,83,0.08)';
+        h.style.stroke = i==pi ? '#D4A853' : 'rgba(212,168,83,0.3)';
+      });
+    });
+  });
+  document.querySelectorAll('.hex-sat').forEach((h,i)=>{
+    h.addEventListener('click',()=>{
+      document.querySelectorAll('.pl-item')[i].click();
+    });
+  });
+})();
+
+/* ===== FLYWHEEL STAGES ===== */
+var activeFW = 0;
+(function(){
+  document.querySelectorAll('.fw-stage').forEach(s=>{
+    s.addEventListener('click',()=>{
+      document.querySelectorAll('.fw-stage').forEach(x=>x.classList.remove('active'));
+      s.classList.add('active');
+      activeFW = parseInt(s.dataset.fw);
+    });
+  });
+})();
+
+/* ===== HERO: 3D SCISSORS ===== */
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, innerWidth/innerHeight, 0.1, 100);
+  camera.position.set(0, 0, 18);
+
+  function resize(){
+    renderer.setSize(innerWidth, innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    camera.aspect = innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  scene.add(new THREE.AmbientLight(0x2a1a00, 1.6));
+  const key = new THREE.DirectionalLight(0xffd090, 2.4);
+  key.position.set(10, 14, 16);
+  scene.add(key);
+  const rim = new THREE.PointLight(0xD4A853, 2.0, 80);
+  rim.position.set(-12, -6, 8);
+  scene.add(rim);
+  const back = new THREE.PointLight(0x2a3a3a, 1.0, 60);
+  back.position.set(0, -10, -5);
+  scene.add(back);
+
+  const goldMat = new THREE.MeshStandardMaterial({color:0xD4A853, metalness:0.92, roughness:0.2, emissive:0x2a1800, emissiveIntensity:0.2});
+  const darkMat = new THREE.MeshStandardMaterial({color:0x181614, metalness:0.7, roughness:0.5});
+  const bladeMat = new THREE.MeshStandardMaterial({color:0xC8C0B0, metalness:0.95, roughness:0.15, emissive:0x080808, emissiveIntensity:0.1});
+
+  function buildScissor(flip){
+    const g = new THREE.Group();
+
+    // Blade
+    const bladeShape = new THREE.Shape();
+    bladeShape.moveTo(0, 0);
+    bladeShape.lineTo(0.18, 0.12);
+    bladeShape.lineTo(0.06, 5.5);
+    bladeShape.lineTo(-0.06, 5.5);
+    bladeShape.lineTo(-0.1, 0);
+    bladeShape.closePath();
+    const bladeGeo = new THREE.ExtrudeGeometry(bladeShape, {depth:0.12, bevelEnabled:true, bevelSize:0.02, bevelThickness:0.01, bevelSegments:2});
+    const blade = new THREE.Mesh(bladeGeo, bladeMat);
+    blade.position.set(flip?0.12:-0.12, -0.5, 0);
+    if(flip) blade.scale.x = -1;
+    g.add(blade);
+
+    // Handle ring
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.85, 0.18, 20, 48), goldMat);
+    ring.position.set(flip?-0.25:0.25, -2.2, 0);
+    g.add(ring);
+
+    // Handle neck
+    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.2, 1.8, 18), goldMat);
+    neck.position.set(flip?-0.08:0.08, -1.1, 0);
+    g.add(neck);
+
+    // Pivot
+    const pivot = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.3, 24), goldMat);
+    pivot.rotation.x = Math.PI/2;
+    pivot.position.z = 0.12;
+    g.add(pivot);
+
+    return g;
+  }
+
+  const scissorGroup = new THREE.Group();
+  const bladeA = buildScissor(false);
+  const bladeB = buildScissor(true);
+  scissorGroup.add(bladeA);
+  scissorGroup.add(bladeB);
+  scissorGroup.position.set(4, 0, 0);
+  scissorGroup.rotation.x = -0.18;
+  scene.add(scissorGroup);
+
+  // Decorative hex tiles
+  for(let i=0;i<8;i++){
+    const a = (i/8)*Math.PI*2;
+    const r = 8 + Math.random()*3;
+    const tile = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.6+Math.random()*0.3, 0.6+Math.random()*0.3, 0.08, 6),
+      new THREE.MeshStandardMaterial({color:0xD4A853, metalness:0.8, roughness:0.4, transparent:true, opacity:0.08+Math.random()*0.12})
+    );
+    tile.rotation.x = Math.PI/2;
+    tile.position.set(Math.cos(a)*r, Math.sin(a)*r, -2+Math.random()*4);
+    scene.add(tile);
+  }
+
+  let tgtRotY = 0.3, curRotY = 0.3;
+  let tgtRotX = -0.18, curRotX = -0.18;
+  let openAngle = 0.22, tgtOpen = 0.22;
+  let scroll = 0;
+
+  window.addEventListener('mousemove', e=>{
+    tgtRotY = 0.3 + (e.clientX/innerWidth-0.5)*0.7;
+    tgtRotX = -0.18 + (e.clientY/innerHeight-0.5)*0.3;
+    tgtOpen = 0.12 + (e.clientX/innerWidth)*0.4;
+  });
+  window.addEventListener('scroll', ()=>{
+    scroll = Math.min(scrollY/innerHeight, 1.4);
+  });
+
+  function animate(){
+    requestAnimationFrame(animate);
+    curRotY += (tgtRotY-curRotY)*0.04;
+    curRotX += (tgtRotX-curRotX)*0.04;
+    openAngle += (tgtOpen-openAngle)*0.06;
+
+    scissorGroup.rotation.y = curRotY;
+    scissorGroup.rotation.x = curRotX;
+    bladeA.rotation.z = -openAngle;
+    bladeB.rotation.z = openAngle;
+
+    scissorGroup.position.y = Math.sin(Date.now()*0.0008)*0.3 - scroll*5;
+    scissorGroup.scale.setScalar(1 - scroll*0.2);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+/* ===== FLYWHEEL: 3D torus ===== */
+(function(){
+  const canvas = document.getElementById('flywheelCanvas');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(36, 1, 0.1, 100);
+  camera.position.set(0, 0, 14);
+
+  function resize(){
+    const r = canvas.getBoundingClientRect();
+    renderer.setSize(r.width, r.height, false);
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    camera.aspect = r.width/r.height;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  scene.add(new THREE.AmbientLight(0x2a1a00, 1.4));
+  const key = new THREE.DirectionalLight(0xffd090, 1.8);
+  key.position.set(8,10,12);
+  scene.add(key);
+  const rim = new THREE.PointLight(0xD4A853, 1.5, 50);
+  rim.position.set(-8,-5,8);
+  scene.add(rim);
+
+  const torusMat = new THREE.MeshStandardMaterial({color:0x2a2420, metalness:0.65, roughness:0.45});
+  const activeMat = new THREE.MeshStandardMaterial({color:0xD4A853, metalness:0.88, roughness:0.22, emissive:0x3a1e00, emissiveIntensity:0.3});
+  const torus = new THREE.Mesh(new THREE.TorusGeometry(4.2, 0.45, 20, 80), torusMat.clone());
+  scene.add(torus);
+
+  // 6 stage markers on torus
+  const stages = ['Discover','Consider','Book','Experience','Return','Advocate'];
+  const segMeshes = [];
+  for(let i=0;i<6;i++){
+    const a = (i/6)*Math.PI*2;
+    const r = 4.2;
+    const seg = new THREE.Mesh(
+      new THREE.SphereGeometry(0.42, 24, 24),
+      i===0 ? activeMat.clone() : torusMat.clone()
+    );
+    seg.position.set(Math.cos(a)*r, Math.sin(a)*r, 0);
+    scene.add(seg);
+    segMeshes.push(seg);
+
+    // Spoke
+    const sp = [new THREE.Vector3(0,0,0.05), new THREE.Vector3(Math.cos(a)*3.8, Math.sin(a)*3.8, 0.05)];
+    scene.add(new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(sp),
+      new THREE.LineBasicMaterial({color:0xD4A853, transparent:true, opacity:0.18})
+    ));
+  }
+
+  let vis = false;
+  new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting) vis=true; }), {threshold:0.15}).observe(canvas);
+
+  function animate(){
+    requestAnimationFrame(animate);
+    if(!vis) return;
+    resize();
+    torus.rotation.z += 0.003;
+    segMeshes.forEach((s,i)=>{
+      const tgt = i===activeFW ? 1.8 : 1.0;
+      s.scale.setScalar(s.scale.x + (tgt-s.scale.x)*0.1);
+      // Sync to torus rotation
+      const a = (i/6)*Math.PI*2 + torus.rotation.z;
+      s.position.set(Math.cos(a)*4.2, Math.sin(a)*4.2, 0);
+      if(i===activeFW){
+        s.material.emissiveIntensity = 0.3 + Math.sin(Date.now()*0.003)*0.1;
+      }
+    });
+    scene.rotation.y = Math.sin(Date.now()*0.00025)*0.12;
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+
+/* ===== PROOF MINI CHARTS ===== */
+(function(){
+  const convData = [100,108,115,125,138,155,175,205,240,285,330,355,365,371,375,382];
+  const cpcData = [14,13.8,13.2,12.5,11.8,10.6,9.2,8.0,6.8,5.9,5.2,4.8,4.7,4.6,4.6,4.6];
+  const ctrData = [1.0,1.05,1.12,1.25,1.45,1.7,2.0,2.3,2.7,3.0,3.3,3.5,3.65,3.75,3.8,3.8];
+
+  function drawChart(canvasId, data, color, reversed){
+    const canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    function draw(){
+      const w = canvas.offsetWidth, h = canvas.offsetHeight;
+      canvas.width = w * (devicePixelRatio||1);
+      canvas.height = h * (devicePixelRatio||1);
+      ctx.scale(devicePixelRatio||1, devicePixelRatio||1);
+      ctx.clearRect(0,0,w,h);
+      const n = data.length;
+      const min = Math.min(...data), max = Math.max(...data);
+      const pad = 8;
+      const pts = data.map((v,i)=>({
+        x: pad + (i/(n-1))*(w-pad*2),
+        y: reversed
+          ? pad + ((v-min)/(max-min))*(h-pad*2)
+          : (h-pad) - ((v-min)/(max-min))*(h-pad*2)
+      }));
+      // Fill
+      ctx.beginPath();
+      ctx.moveTo(pts[0].x, h-pad);
+      pts.forEach(p=>ctx.lineTo(p.x,p.y));
+      ctx.lineTo(pts[pts.length-1].x, h-pad);
+      ctx.closePath();
+      ctx.fillStyle = color.replace('1)', '0.12)');
+      ctx.fill();
+      // Line
+      ctx.beginPath();
+      pts.forEach((p,i)=>i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y));
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      // End dot
+      const last = pts[pts.length-1];
+      ctx.beginPath();
+      ctx.arc(last.x, last.y, 3, 0, Math.PI*2);
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+    draw();
+    window.addEventListener('resize', draw);
+  }
+
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      drawChart('proofCanvas1', convData, 'rgba(212,168,83,1)', false);
+      drawChart('proofCanvas2', cpcData, 'rgba(95,168,160,1)', true);
+      drawChart('proofCanvas3', ctrData, 'rgba(212,168,83,1)', false);
+      io.disconnect();
+    });
+  },{threshold:0.3});
+  const proofSec = document.getElementById('sec-proof');
+  if(proofSec) io.observe(proofSec);
+})();
+
+/* ===== STORE CONSTELLATION: Three.js ===== */
+(function(){
+  const canvas = document.getElementById('constellationCanvas');
+  const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(40, 1, 0.1, 100);
+  camera.position.set(0, 0, 16);
+
+  function resize(){
+    const r = canvas.getBoundingClientRect();
+    renderer.setSize(r.width, r.height, false);
+    renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+    camera.aspect = r.width/r.height;
+    camera.updateProjectionMatrix();
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  scene.add(new THREE.AmbientLight(0x2a1a00, 1.2));
+  const key = new THREE.DirectionalLight(0xffd090, 1.8);
+  key.position.set(8,10,12);
+  scene.add(key);
+  const rim = new THREE.PointLight(0xD4A853, 1.5, 50);
+  rim.position.set(-8,-5,8);
+  scene.add(rim);
+
+  // Store data: name, revenue index, tier
+  const storeData = [
+    {name:'PhoenixMC', rev:49.9, tier:'flagship'},
+    {name:'PhoenixMoA', rev:46.2, tier:'flagship'},
+    {name:'Indiranagar', rev:28.4, tier:'top'},
+    {name:'UB City', rev:22.1, tier:'top'},
+    {name:'Whitefield', rev:18.6, tier:'top'},
+    {name:'Koramangala', rev:14.2, tier:'mid'},
+    {name:'Vega City', rev:11.8, tier:'mid'},
+    {name:'HSR Layout', rev:9.4, tier:'mid'},
+    {name:'Jayanagar', rev:8.8, tier:'mid'},
+    {name:'Marathahalli', rev:7.6, tier:'new'},
+    {name:'Sarjapur', rev:6.9, tier:'new'},
+    {name:'Hebbal', rev:6.2, tier:'new'},
+    {name:'JP Nagar', rev:5.8, tier:'new'},
+    {name:'BTM Layout', rev:5.4, tier:'new'},
+    {name:'Banashankari', rev:4.9, tier:'new'},
+    {name:'Electronic City', rev:4.2, tier:'new'},
+  ];
+  const maxRev = Math.max(...storeData.map(s=>s.rev));
+
+  // Central T&G sphere
+  const center = new THREE.Mesh(
+    new THREE.SphereGeometry(1.2, 36, 36),
+    new THREE.MeshStandardMaterial({color:0xD4A853, metalness:0.88, roughness:0.2, emissive:0x2a1200, emissiveIntensity:0.3})
+  );
+  scene.add(center);
+
+  const tierColors = {flagship:0xD4A853, top:0xB8924A, mid:0x6A6A6A, new:0x3A3A3A};
+  const storeMeshes = [];
+
+  const orbit = new THREE.Group();
+  scene.add(orbit);
+
+  storeData.forEach((store,i)=>{
+    const frac = store.rev/maxRev;
+    const r = 4.0 + frac*1.8;
+    const a = (i/16)*Math.PI*2;
+    const zOffset = (Math.random()-0.5)*2.5;
+    const size = 0.3 + frac*0.7;
+
+    const mesh = new THREE.Mesh(
+      new THREE.SphereGeometry(size, 20, 20),
+      new THREE.MeshStandardMaterial({
+        color:tierColors[store.tier],
+        metalness:0.8, roughness:0.3,
+        emissive:store.tier==='flagship'?0x3a1800:0x0a0a0a,
+        emissiveIntensity:store.tier==='flagship'?0.4:0.1,
+        transparent:true,
+        opacity:store.tier==='new'?0.6:0.9
+      })
+    );
+    mesh.position.set(Math.cos(a)*r, Math.sin(a)*r, zOffset);
+    orbit.add(mesh);
+    storeMeshes.push({mesh, rev:store.rev, tier:store.tier});
+
+    // Connect line
+    const lPts = [new THREE.Vector3(0,0,0), new THREE.Vector3(Math.cos(a)*r*0.9, Math.sin(a)*r*0.9, zOffset*0.9)];
+    orbit.add(new THREE.Line(
+      new THREE.BufferGeometry().setFromPoints(lPts),
+      new THREE.LineBasicMaterial({color:0xD4A853, transparent:true, opacity:store.tier==='flagship'?0.25:0.08})
+    ));
+  });
+
+  let vis = false;
+  new IntersectionObserver(entries=>entries.forEach(e=>{ if(e.isIntersecting) vis=true; }), {threshold:0.2}).observe(canvas);
+
+  let drag = false, lastX2 = 0, vel2 = 0;
+  canvas.addEventListener('pointerdown', e=>{ drag=true; lastX2=e.clientX; });
+  window.addEventListener('pointerup', ()=>{ drag=false; });
+  window.addEventListener('pointermove', e=>{
+    if(!drag) return;
+    vel2 = (e.clientX-lastX2)*0.006;
+    lastX2=e.clientX;
+  });
+
+  function animate(){
+    requestAnimationFrame(animate);
+    if(!vis) return;
+    resize();
+    if(!drag) vel2 *= 0.9;
+    orbit.rotation.y += 0.003 + vel2;
+    center.rotation.y += 0.008;
+    storeMeshes.forEach(({mesh,tier})=>{
+      if(tier==='flagship') mesh.scale.setScalar(1 + Math.sin(Date.now()*0.002)*0.07);
+    });
+    renderer.render(scene, camera);
+  }
+  animate();
+})();
+</script>
+</body>
+</html>
